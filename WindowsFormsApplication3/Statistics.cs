@@ -132,8 +132,7 @@ namespace SeaBattleGame
             }
 
             EnabledSwitch(Form1.RightField.CellField, true);
-
-
+           
         }
 
         public static void Ok_Clicked(object sender, EventArgs e)
@@ -245,10 +244,11 @@ namespace SeaBattleGame
                 MessageBox.Show("You are loser!! Sorry!!");
 
             }
+            SaveResult();
 
             EndGame(null, EventArgs.Empty);
 
-            SaveResult();
+
         }
 
         static void EnabledSwitch(SeaBattlePicture[,] Matrix, bool value)
@@ -327,7 +327,8 @@ namespace SeaBattleGame
                     return true;
                 }
                 return false;
-            }
+               
+           }
           }
         }
     }

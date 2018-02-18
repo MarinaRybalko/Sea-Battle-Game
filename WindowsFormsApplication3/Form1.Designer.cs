@@ -43,16 +43,16 @@
             this.label7 = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.gameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.informationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aboutGameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.topSecretToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.topPlayersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.slylesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aquaStyleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.grayStyleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.LabelCaption = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutGameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.topPlayersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aquaStyleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.grayStyleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
@@ -269,14 +269,6 @@
             this.gameToolStripMenuItem.Size = new System.Drawing.Size(60, 24);
             this.gameToolStripMenuItem.Text = "Game";
             // 
-            // exitToolStripMenuItem
-            // 
-            this.exitToolStripMenuItem.Image = global::SeaBattleGame.Properties.Resources.Exit;
-            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
-            this.exitToolStripMenuItem.Text = "Exit";
-            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
-            // 
             // informationToolStripMenuItem
             // 
             this.informationToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -284,14 +276,6 @@
             this.informationToolStripMenuItem.Name = "informationToolStripMenuItem";
             this.informationToolStripMenuItem.Size = new System.Drawing.Size(99, 24);
             this.informationToolStripMenuItem.Text = "Information";
-            // 
-            // aboutGameToolStripMenuItem
-            // 
-            this.aboutGameToolStripMenuItem.Image = global::SeaBattleGame.Properties.Resources.Information;
-            this.aboutGameToolStripMenuItem.Name = "aboutGameToolStripMenuItem";
-            this.aboutGameToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
-            this.aboutGameToolStripMenuItem.Text = "About game";
-            this.aboutGameToolStripMenuItem.Click += new System.EventHandler(this.aboutGameToolStripMenuItem_Click);
             // 
             // topSecretToolStripMenuItem
             // 
@@ -301,6 +285,45 @@
             this.topSecretToolStripMenuItem.Size = new System.Drawing.Size(97, 24);
             this.topSecretToolStripMenuItem.Text = "Top players";
             // 
+            // slylesToolStripMenuItem
+            // 
+            this.slylesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.aquaStyleToolStripMenuItem,
+            this.grayStyleToolStripMenuItem});
+            this.slylesToolStripMenuItem.Name = "slylesToolStripMenuItem";
+            this.slylesToolStripMenuItem.Size = new System.Drawing.Size(59, 24);
+            this.slylesToolStripMenuItem.Text = "Styles";
+            // 
+            // LabelCaption
+            // 
+            this.LabelCaption.AutoSize = true;
+            this.LabelCaption.Font = new System.Drawing.Font("Algerian", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelCaption.Location = new System.Drawing.Point(353, 56);
+            this.LabelCaption.Name = "LabelCaption";
+            this.LabelCaption.Size = new System.Drawing.Size(382, 66);
+            this.LabelCaption.TabIndex = 16;
+            this.LabelCaption.Text = "Sea Battle";
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Image = global::SeaBattleGame.Properties.Resources.Exit;
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
+            // aboutGameToolStripMenuItem
+            // 
+            this.aboutGameToolStripMenuItem.Image = global::SeaBattleGame.Properties.Resources.Information;
+            this.aboutGameToolStripMenuItem.Name = "aboutGameToolStripMenuItem";
+            this.aboutGameToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.aboutGameToolStripMenuItem.Text = "About game";
+            this.aboutGameToolStripMenuItem.Click += new System.EventHandler(this.aboutGameToolStripMenuItem_Click);
+            // 
             // topPlayersToolStripMenuItem
             // 
             this.topPlayersToolStripMenuItem.Image = global::SeaBattleGame.Properties.Resources.top;
@@ -308,15 +331,6 @@
             this.topPlayersToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.topPlayersToolStripMenuItem.Text = "Top players";
             this.topPlayersToolStripMenuItem.Click += new System.EventHandler(this.topPlayersToolStripMenuItem_Click);
-            // 
-            // slylesToolStripMenuItem
-            // 
-            this.slylesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.aquaStyleToolStripMenuItem,
-            this.grayStyleToolStripMenuItem});
-            this.slylesToolStripMenuItem.Name = "slylesToolStripMenuItem";
-            this.slylesToolStripMenuItem.Size = new System.Drawing.Size(58, 24);
-            this.slylesToolStripMenuItem.Text = "Slyles";
             // 
             // aquaStyleToolStripMenuItem
             // 
@@ -333,20 +347,6 @@
             this.grayStyleToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.grayStyleToolStripMenuItem.Text = "Gray style";
             this.grayStyleToolStripMenuItem.Click += new System.EventHandler(this.grayStyleToolStripMenuItem_Click);
-            // 
-            // LabelCaption
-            // 
-            this.LabelCaption.AutoSize = true;
-            this.LabelCaption.Font = new System.Drawing.Font("Algerian", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelCaption.Location = new System.Drawing.Point(353, 56);
-            this.LabelCaption.Name = "LabelCaption";
-            this.LabelCaption.Size = new System.Drawing.Size(382, 66);
-            this.LabelCaption.TabIndex = 16;
-            this.LabelCaption.Text = "Sea Battle";
-            // 
-            // errorProvider1
-            // 
-            this.errorProvider1.ContainerControl = this;
             // 
             // Form1
             // 

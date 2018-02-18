@@ -30,7 +30,7 @@ namespace SeaBattleGame
             }
             else
             {
-                errorProvider1.SetError(textBox1,"Ucorrect name");
+                errorProvider1.SetError(textBox1,"Uncorrect name");
                 this.Show();
             }
         }

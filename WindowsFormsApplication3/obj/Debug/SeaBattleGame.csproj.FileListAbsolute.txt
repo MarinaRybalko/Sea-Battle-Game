@@ -33,3 +33,4 @@ D:\SeaBattle-master\WindowsFormsApplication3\obj\Debug\SeaBattleGame.RatingForm.
 D:\SeaBattle-master\WindowsFormsApplication3\bin\Debug\IStyle.dll
 D:\SeaBattle-master\WindowsFormsApplication3\obj\Debug\SeaBattleGame.GreetingForm.resources
 D:\SeaBattle-master\WindowsFormsApplication3\bin\Debug\Resources\PlayersDB.mdf
+D:\SeaBattle-master\WindowsFormsApplication3\bin\Debug\Resources\PlayersDB_log.ldf

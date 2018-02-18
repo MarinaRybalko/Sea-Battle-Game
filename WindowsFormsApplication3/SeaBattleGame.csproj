@@ -209,6 +209,10 @@
     <None Include="Resources\PlayersDB.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <Content Include="Resources\PlayersDB_log.ldf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DependentUpon>PlayersDB.mdf</DependentUpon>
+    </Content>
     <Content Include="Styles\IStyle.dll" />
     <Content Include="Styles\StyleAqua.dll" />
     <None Include="Styles\StyleGray.dll" />
