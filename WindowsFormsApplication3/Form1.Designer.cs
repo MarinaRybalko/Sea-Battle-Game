@@ -30,8 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -43,81 +41,21 @@
             this.label7 = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.gameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.informationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.topSecretToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.slylesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.LabelCaption = new System.Windows.Forms.Label();
-            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.informationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutGameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.topSecretToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.topPlayersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.slylesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aquaStyleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.grayStyleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.LabelCaption = new System.Windows.Forms.Label();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.tableLayoutPanel1.ColumnCount = 10;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(21, 208);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(1);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 10;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(405, 393);
-            this.tableLayoutPanel1.TabIndex = 2;
-            // 
-            // tableLayoutPanel2
-            // 
-            this.tableLayoutPanel2.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.tableLayoutPanel2.ColumnCount = 10;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 41F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 39F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 41F));
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(635, 208);
-            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(1);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 10;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(401, 393);
-            this.tableLayoutPanel2.TabIndex = 4;
             // 
             // button1
             // 
@@ -133,6 +71,7 @@
             this.button1.TabIndex = 5;
             this.button1.Text = "Start";
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             this.button1.MouseEnter += new System.EventHandler(this.ButtonEnter);
             this.button1.MouseLeave += new System.EventHandler(this.ButtonLeave);
             // 
@@ -150,6 +89,7 @@
             this.button2.TabIndex = 6;
             this.button2.Text = "Generate fleet";
             this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             this.button2.MouseEnter += new System.EventHandler(this.ButtonEnter);
             this.button2.MouseLeave += new System.EventHandler(this.ButtonLeave);
             // 
@@ -167,6 +107,7 @@
             this.button3.Text = "Ок!";
             this.button3.UseVisualStyleBackColor = false;
             this.button3.Visible = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             this.button3.MouseEnter += new System.EventHandler(this.ButtonEnter);
             this.button3.MouseLeave += new System.EventHandler(this.ButtonLeave);
             // 
@@ -269,6 +210,14 @@
             this.gameToolStripMenuItem.Size = new System.Drawing.Size(60, 24);
             this.gameToolStripMenuItem.Text = "Game";
             // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Image = global::SeaBattleGame.Properties.Resources.Exit;
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(108, 26);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
             // informationToolStripMenuItem
             // 
             this.informationToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -276,6 +225,14 @@
             this.informationToolStripMenuItem.Name = "informationToolStripMenuItem";
             this.informationToolStripMenuItem.Size = new System.Drawing.Size(99, 24);
             this.informationToolStripMenuItem.Text = "Information";
+            // 
+            // aboutGameToolStripMenuItem
+            // 
+            this.aboutGameToolStripMenuItem.Image = global::SeaBattleGame.Properties.Resources.Information;
+            this.aboutGameToolStripMenuItem.Name = "aboutGameToolStripMenuItem";
+            this.aboutGameToolStripMenuItem.Size = new System.Drawing.Size(167, 26);
+            this.aboutGameToolStripMenuItem.Text = "About game";
+            this.aboutGameToolStripMenuItem.Click += new System.EventHandler(this.aboutGameToolStripMenuItem_Click);
             // 
             // topSecretToolStripMenuItem
             // 
@@ -285,6 +242,14 @@
             this.topSecretToolStripMenuItem.Size = new System.Drawing.Size(97, 24);
             this.topSecretToolStripMenuItem.Text = "Top players";
             // 
+            // topPlayersToolStripMenuItem
+            // 
+            this.topPlayersToolStripMenuItem.Image = global::SeaBattleGame.Properties.Resources.top;
+            this.topPlayersToolStripMenuItem.Name = "topPlayersToolStripMenuItem";
+            this.topPlayersToolStripMenuItem.Size = new System.Drawing.Size(160, 26);
+            this.topPlayersToolStripMenuItem.Text = "Top players";
+            this.topPlayersToolStripMenuItem.Click += new System.EventHandler(this.topPlayersToolStripMenuItem_Click);
+            // 
             // slylesToolStripMenuItem
             // 
             this.slylesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -293,6 +258,22 @@
             this.slylesToolStripMenuItem.Name = "slylesToolStripMenuItem";
             this.slylesToolStripMenuItem.Size = new System.Drawing.Size(59, 24);
             this.slylesToolStripMenuItem.Text = "Styles";
+            // 
+            // aquaStyleToolStripMenuItem
+            // 
+            this.aquaStyleToolStripMenuItem.Image = global::SeaBattleGame.Properties.Resources.aquaimg;
+            this.aquaStyleToolStripMenuItem.Name = "aquaStyleToolStripMenuItem";
+            this.aquaStyleToolStripMenuItem.Size = new System.Drawing.Size(153, 26);
+            this.aquaStyleToolStripMenuItem.Text = "Aqua style";
+            this.aquaStyleToolStripMenuItem.Click += new System.EventHandler(this.aquaStyleToolStripMenuItem_Click);
+            // 
+            // grayStyleToolStripMenuItem
+            // 
+            this.grayStyleToolStripMenuItem.Image = global::SeaBattleGame.Properties.Resources.greyicon;
+            this.grayStyleToolStripMenuItem.Name = "grayStyleToolStripMenuItem";
+            this.grayStyleToolStripMenuItem.Size = new System.Drawing.Size(153, 26);
+            this.grayStyleToolStripMenuItem.Text = "Gray style";
+            this.grayStyleToolStripMenuItem.Click += new System.EventHandler(this.grayStyleToolStripMenuItem_Click);
             // 
             // LabelCaption
             // 
@@ -308,45 +289,63 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
-            // exitToolStripMenuItem
+            // tableLayoutPanel1
             // 
-            this.exitToolStripMenuItem.Image = global::SeaBattleGame.Properties.Resources.Exit;
-            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
-            this.exitToolStripMenuItem.Text = "Exit";
-            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            this.tableLayoutPanel1.ColumnCount = 10;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(46, 200);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 10;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(405, 404);
+            this.tableLayoutPanel1.TabIndex = 17;
             // 
-            // aboutGameToolStripMenuItem
+            // tableLayoutPanel2
             // 
-            this.aboutGameToolStripMenuItem.Image = global::SeaBattleGame.Properties.Resources.Information;
-            this.aboutGameToolStripMenuItem.Name = "aboutGameToolStripMenuItem";
-            this.aboutGameToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
-            this.aboutGameToolStripMenuItem.Text = "About game";
-            this.aboutGameToolStripMenuItem.Click += new System.EventHandler(this.aboutGameToolStripMenuItem_Click);
-            // 
-            // topPlayersToolStripMenuItem
-            // 
-            this.topPlayersToolStripMenuItem.Image = global::SeaBattleGame.Properties.Resources.top;
-            this.topPlayersToolStripMenuItem.Name = "topPlayersToolStripMenuItem";
-            this.topPlayersToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
-            this.topPlayersToolStripMenuItem.Text = "Top players";
-            this.topPlayersToolStripMenuItem.Click += new System.EventHandler(this.topPlayersToolStripMenuItem_Click);
-            // 
-            // aquaStyleToolStripMenuItem
-            // 
-            this.aquaStyleToolStripMenuItem.Image = global::SeaBattleGame.Properties.Resources.aquaimg;
-            this.aquaStyleToolStripMenuItem.Name = "aquaStyleToolStripMenuItem";
-            this.aquaStyleToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
-            this.aquaStyleToolStripMenuItem.Text = "Aqua style";
-            this.aquaStyleToolStripMenuItem.Click += new System.EventHandler(this.aquaStyleToolStripMenuItem_Click);
-            // 
-            // grayStyleToolStripMenuItem
-            // 
-            this.grayStyleToolStripMenuItem.Image = global::SeaBattleGame.Properties.Resources.greyicon;
-            this.grayStyleToolStripMenuItem.Name = "grayStyleToolStripMenuItem";
-            this.grayStyleToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
-            this.grayStyleToolStripMenuItem.Text = "Gray style";
-            this.grayStyleToolStripMenuItem.Click += new System.EventHandler(this.grayStyleToolStripMenuItem_Click);
+            this.tableLayoutPanel2.ColumnCount = 10;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(625, 200);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 10;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(404, 404);
+            this.tableLayoutPanel2.TabIndex = 18;
             // 
             // Form1
             // 
@@ -355,6 +354,8 @@
             this.BackColor = System.Drawing.Color.LightSkyBlue;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1064, 681);
+            this.Controls.Add(this.tableLayoutPanel2);
+            this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.LabelCaption);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
@@ -365,8 +366,6 @@
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.tableLayoutPanel2);
-            this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -384,8 +383,6 @@
         }
 
         #endregion
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
@@ -407,6 +404,8 @@
         private System.Windows.Forms.ToolStripMenuItem aquaStyleToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem grayStyleToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem topPlayersToolStripMenuItem;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
     }
 }
 
