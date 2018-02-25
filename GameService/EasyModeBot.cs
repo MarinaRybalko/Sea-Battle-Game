@@ -1,4 +1,6 @@
-﻿using GameCore;
+﻿using System.Threading;
+using System.Windows.Forms;
+using GameCore;
 
 namespace GameService
 {
@@ -14,7 +16,7 @@ namespace GameService
 
 
         private int _corditateI;
-        private int _cordinateJ;
+        private int _cordinateJ=0;
         private Location _firstShot;
 
         public EasyModeBot(Field field) : base(field)
@@ -24,10 +26,10 @@ namespace GameService
             IntactCell = Field.Size * Field.Size;
         }
 
-         public override void Move()
+        public override void Move()
         {
-            if (_shotState == CellStatus.Drowned)
-                MarkDrownedShip();
+            Thread.Sleep(100);
+           
 
             Shot();
 
@@ -47,29 +49,31 @@ namespace GameService
         //tested
    
         private void Shot()
-        {
-            if (_corditateI + _cordinateJ < Field.Size)
+        {        
+            if ( _corditateI < Field.Size)
             {
-                var shot = _cordinateJ;
-                _cordinateJ++;
-                if (_cordinateJ == 9)
+                if (_shotState == CellStatus.Drowned)
+                    MarkDrownedShip();
+            
+                if (!(_cordinateJ < Field.Size))
                 {
                     _cordinateJ = 0;
                     _corditateI++;
                 }
+                    do
+                    {
+                        _shotState = OponentField.Shot(OponentField.CellField[_corditateI, _cordinateJ]);
+                        _cordinateJ++;
+                        if (_cordinateJ != Field.Size) continue;
+                        _cordinateJ = 0;
+                        _corditateI++;
 
-                var newShot = OverrideShot(CheckShot, shot);
+                    } while (OponentField.CellField[_corditateI, _cordinateJ].CellStatus == CellStatus.Miss);           
 
-                _shotState = OponentField.Shot(OponentField.CellField[newShot.I, newShot.J]);
+                _currentShot  = new Location(_corditateI, _cordinateJ);
 
-                if (_shotState == CellStatus.Crippled)
-                {
-                    _firstShot = newShot;
-                }
-
-                _currentShot = newShot;
             }
-
+            
             if (_shotState != CellStatus.Miss) Move();
         }
         //tested

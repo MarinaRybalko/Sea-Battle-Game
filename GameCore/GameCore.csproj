@@ -50,7 +50,7 @@
     <Compile Include="Field.cs" />
     <Compile Include="GameStatus.cs" />
     <Compile Include="GeneralFunction.cs" />
-    <Compile Include="IMove.cs" />
+    <Compile Include="IBotPlay.cs" />
     <Compile Include="Location.cs" />
     <Compile Include="MoveState.cs" />
     <Compile Include="Player.cs" />

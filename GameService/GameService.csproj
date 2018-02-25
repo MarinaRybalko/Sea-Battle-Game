@@ -42,7 +42,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EasyModeBot.cs" />
     <Compile Include="HumanPlay.cs" />
     <Compile Include="MouseEvent.cs" />
     <Compile Include="MyBotPlayer.cs" />

@@ -14,6 +14,7 @@ namespace SeaBattleGame
 {
     public partial class Form1 : Form
     {
+        
         private RatingForm _ratingForm;
         private readonly GameController _controller;
         public readonly IRepository<BattlePlayer> Players;
@@ -29,8 +30,6 @@ namespace SeaBattleGame
             InitializeComponent();
            
             _controller = new GameController();
-            
-                      
             BeginGameEvent += BeginGame;
             //_controller.RandomArrangement(_controller.LeftField);
             _controller.LeftField.DisplayCompletionCell();
@@ -104,7 +103,15 @@ namespace SeaBattleGame
         }
         private void BeginGame(object sender, EventArgs e)
         {
-            _controller.GameStatus = GameStatus.Begin;
+            //_controller.GameStatus = GameStatus.Begin;
+            if (radioButtonEasyMode.Checked)
+            {
+                _controller.GetEasyPlayer();
+            }
+            else if(radioButtonNormalMode.Checked)
+            {
+               _controller.GetNormalPlayer();
+            }            
             button1.Visible = false;
             button2.Visible = false;
             _controller.LeftPlayer.OponentChanged += Oponent_Changed;
@@ -194,6 +201,9 @@ namespace SeaBattleGame
 
         private void button3_Click(object sender, EventArgs e)
         {
+            labelGameMode.Visible = true;
+            radioButtonEasyMode.Visible = true;
+            radioButtonNormalMode.Visible = true;
 
             BeforeGame();
             _controller.EnabledSwitch(_controller.LeftField.CellField, true);
@@ -223,8 +233,10 @@ namespace SeaBattleGame
         {
             button1.Visible = false;
             button2.Visible = false;
-
-           _controller.EnabledSwitch(_controller.LeftField.CellField, false);
+            labelGameMode.Visible = false;
+            radioButtonEasyMode.Visible = false;
+            radioButtonNormalMode.Visible = false;
+            _controller.EnabledSwitch(_controller.LeftField.CellField, false);
 
            // if (MouseEvent.BeginArround) MouseEvent.EndedArround();
 
@@ -347,6 +359,8 @@ namespace SeaBattleGame
             }
         }
 
+      
+       
        
     }
 }

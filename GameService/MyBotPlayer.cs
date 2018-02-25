@@ -50,7 +50,7 @@ namespace GameService
                     GuessingDirection();
                     break;
                 case MoveState.KnownDirection:
-                    SureShot(_direction, OponentField);
+                    SureShot(_direction);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -168,15 +168,28 @@ namespace GameService
             else _chekDirection[3] = true;
         }
 
-        private void SureShot(Direction direction, Field OponentField)
+        private void SureShot(Direction direction)
         {
             var di = 0;
             var dj = 0;
 
-            if (direction == Direction.Left) dj = -1;
-            if (direction == Direction.Reight) dj = 1;
-            if (direction == Direction.Top) di = -1;
-            if (direction == Direction.Bottom) di = 1;
+            switch (direction)
+            {
+                case Direction.Left:
+                    dj = -1;
+                    break;
+                case Direction.Reight:
+                    dj = 1;
+                    break;
+                case Direction.Top:
+                    di = -1;
+                    break;
+                case Direction.Bottom:
+                    di = 1;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(direction), direction, null);
+            }
 
             CellStatus shotState;
 
@@ -211,37 +224,36 @@ namespace GameService
                 case Direction.Bottom:
                     _direction = Direction.Top;
                     break;
-                default: break;
-                    
-                    
+
+
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
 
             _currentShot = _firstShot;
         }
         //tested
-        private CellStatus ShotDirection(Direction _direciton)
+        private CellStatus ShotDirection(Direction direciton)
         {
-            int di = 0;
-            int dj = 0;
+            int di;
+            int dj;
 
-            if (_direciton == Direction.Left)
+            switch (direciton)
             {
-                dj = -1; di = 0;
-            }
-
-            if (_direciton == Direction.Top)
-            {
-                dj = 0; di = -1;
-            }
-
-            if (_direciton == Direction.Reight)
-            {
-                dj = 1; di = 0;
-            }
-
-            if (_direciton == Direction.Bottom)
-            {
-                dj = 0; di = 1;
+                case Direction.Left:
+                    dj = -1; di = 0;
+                    break;
+                case Direction.Top:
+                    dj = 0; di = -1;
+                    break;
+                case Direction.Reight:
+                    dj = 1; di = 0;
+                    break;
+                case Direction.Bottom:
+                    dj = 0; di = 1;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(direciton), direciton, null);
             }
 
             _shotState = OponentField.Shot(OponentField.CellField[_currentShot.I + di, _currentShot.J + dj]);

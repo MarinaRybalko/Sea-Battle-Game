@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Threading;
 using  GameCore;
 
 namespace CustomGamePlugin
 {
 
-    public class EasyModeBot : Player, IMove
+    public class EasyModeBot : Player
     {
-        private bool _oneGuessing;
-
-
         private CellStatus _shotState;
         protected bool[,] CheckShot = new bool[Field.Size, Field.Size];
         private Location _currentShot;
@@ -18,7 +16,7 @@ namespace CustomGamePlugin
 
 
         private int _corditateI;
-        private int _cordinateJ;
+        private int _cordinateJ = 0;
         private Location _firstShot;
 
         public EasyModeBot(Field field) : base(field)
@@ -28,10 +26,10 @@ namespace CustomGamePlugin
             IntactCell = Field.Size * Field.Size;
         }
 
-        public void Move()
+        public override void Move()
         {
-            if (_shotState == CellStatus.Drowned)
-                MarkDrownedShip();
+            Thread.Sleep(100);
+
 
             Shot();
 
@@ -52,40 +50,40 @@ namespace CustomGamePlugin
 
         private void Shot()
         {
-
-          
-         
-
-            if (_cordinateJ + _corditateI < Field.Size)
-                // var newShot = OverrideShot(CheckShot, shot);
+            if (_corditateI < Field.Size)
             {
-                _shotState = OponentField.Shot(OponentField.CellField[_cordinateJ + _corditateI, _cordinateJ]);
+                if (_shotState == CellStatus.Drowned)
+                    MarkDrownedShip();
 
-                if (_shotState == CellStatus.Crippled)
-                {
-                    _firstShot = new Location(_cordinateJ + _corditateI, _cordinateJ);
-                }
-
-                _currentShot = new Location(_cordinateJ + _corditateI, _cordinateJ);
-                _cordinateJ++;
-                if (_cordinateJ == 9)
+                if (!(_cordinateJ < Field.Size))
                 {
                     _cordinateJ = 0;
                     _corditateI++;
                 }
+                do
+                {
+                    _shotState = OponentField.Shot(OponentField.CellField[_corditateI, _cordinateJ]);
+                    _cordinateJ++;
+                    if (_cordinateJ != Field.Size) continue;
+                    _cordinateJ = 0;
+                    _corditateI++;
+
+                } while (OponentField.CellField[_corditateI, _cordinateJ].CellStatus == CellStatus.Miss);
+
+                _currentShot = new Location(_corditateI, _cordinateJ);
+
             }
 
             if (_shotState != CellStatus.Miss) Move();
         }
-
         //tested
         protected virtual Location OverrideShot(bool[,] checkShot, int shot)
         {
             return GeneralFunction.FromNumberToLocation(checkShot, shot);
         }
 
-   
+
         //tested
-     
+
     }
 }

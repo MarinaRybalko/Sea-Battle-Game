@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Reflection;
+using System.Windows.Forms;
 using GameCore;
 
 namespace GameService
@@ -32,14 +34,41 @@ namespace GameService
             ResetStatistics(LeftStatistics);
 
         }
+
+        public void GetNormalPlayer()
+        {
+            RightPlayer = new MyBotPlayer(RightField);
+            LeftPlayer.Oponent = RightPlayer;
+            RightPlayer.Oponent = LeftPlayer;
+        }
+        public void GetEasyPlayer()
+        {
+            var fullpath = AppDomain.CurrentDomain.BaseDirectory;
+            var dllPath = fullpath.Replace(@"WindowsFormsApplication3\bin\Debug\", @"Plugins\CustomGamePlugin.dll");
+            var pluginAssembly = Assembly.LoadFrom(dllPath);
+
+            foreach (var plugin in pluginAssembly.GetTypes())
+            {
+                if (plugin.BaseType.ToString() == "GameCore.Player" || plugin.GetInterface("IBotPlay") != null)
+                {
+                    var t =plugin.BaseType;
+                    //Type tipType = t.GetType() ;                    
+                    //MessageBox.Show(plugin.Name);
+                    //MessageBox.Show(plugin.GetType().ToString());
+                   // MessageBox.Show();
+                    
+                    RightPlayer = (Player)Activator.CreateInstance(plugin, new object[] { RightField });
+                    //var ty= Convert.ChangeType(RightPlayer, t);                
+                    //MessageBox.Show(t.ToString());
+                }
+            }
+            LeftPlayer.Oponent = RightPlayer;
+            RightPlayer.Oponent = LeftPlayer;
+        }
         public bool EndedGame { get; set; } 
         //tested 
         public void BeginGameMethod()
-        {
-            RightPlayer = new MyBotPlayer(RightField) {Oponent = LeftPlayer};
-            LeftPlayer.Oponent = RightPlayer;
- 
-           
+        {         
             RightPlayer.TransferMove += Transfer_Move;
             LeftPlayer.TransferMove += Transfer_Move;
         }
