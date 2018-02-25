@@ -5,14 +5,11 @@ namespace GameCore
     public class Ship : BaseShip
     {
         private readonly bool[] _crippled;
-
-        public Field Field { get; set; }
-
-        public Location[] DeckLocation;
-
         private int _shiftDown;
         private int _shiftRight;
 
+        public Field Field { get; set; }
+        public Location[] DeckLocation;
         public Ship(Location location, Orientation orientation, int size, Field field) :
             base(location, orientation, size)
         {

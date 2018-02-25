@@ -7,75 +7,20 @@ namespace GameService
 
     public class MyBotPlayer:Player
     {
-        private bool _oneGuessing;//false
+        private bool _oneGuessing;
 
         private MoveState _moveState = MoveState.UnknownShipLocation;
         private Direction _direction;
         private CellStatus _shotState;
         private static int DirectionLenght { get; } = Enum.GetNames(typeof(Direction)).Length;
-        private readonly Random _random = new Random(DateTime.Now.Millisecond);
-        protected bool[,] CheckShot = new bool[Field.Size, Field.Size];
+        private readonly Random _random = new Random(DateTime.Now.Millisecond);     
         private readonly bool[] _chekDirection = new bool[DirectionLenght];
-
         private int _count;
-
         private Location _currentShot;
         private Location _firstShot;
-
         protected int IntactCell { get; set; }
         private int _intactDirection = DirectionLenght;
-
-
-        public MyBotPlayer(Field field):base(field)
-        {
-            _shotState = CellStatus.Miss;
-            GeneralFunction.FalseToMatrix(CheckShot);
-            IntactCell = Field.Size * Field.Size;
-        }
-
-        public override void Move()
-        {
-            Thread.Sleep(100);
-            if (_shotState == CellStatus.Drowned)
-                MarkDrownedShip();
-
-            CountingIntactCell();
-
-            switch (_moveState)
-            {
-                case MoveState.UnknownShipLocation:
-                    LongShot();
-                    break;
-                case MoveState.UnknownDirection:
-                    GuessingDirection();
-                    break;
-                case MoveState.KnownDirection:
-                    SureShot(_direction);
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
-
-            if (_shotState == CellStatus.Miss)
-                CallTransferMove();
-        
-        }
-
-        protected virtual Ship MarkDrownedShip()
-        {
-           var ship = OponentField.CellField[_currentShot.I, _currentShot.J].ShipIntoCell;
-
-            ship.MarkShip(CheckShot);
-
-            return ship;
-        }
-        //tested
-        protected virtual void CountingIntactCell()
-        {
-            IntactCell = 0;
-
-            foreach (var value in CheckShot) if (!value) IntactCell++;
-        }
+        protected bool[,] CheckShot = new bool[Field.Size, Field.Size];
 
         private void LongShot()
         {
@@ -94,13 +39,7 @@ namespace GameService
             _currentShot = newShot;
 
             if (_shotState != CellStatus.Miss) Move();
-        }
-        //tested
-        protected virtual Location OverrideShot(bool[,] checkShot, int shot)
-        {
-            return GeneralFunction.FromNumberToLocation(checkShot, shot);
-        }
-
+        }    
         private void GuessingDirection()
         {
 
@@ -111,7 +50,7 @@ namespace GameService
 
             int numberDirection = -1;
 
-            for (var i = 0; i < 4; i++)
+            for (var i = 0; i < Enum.GetValues(typeof( Direction)).Length; i++)
             {
                 if (!_chekDirection[i])
                 {
@@ -125,7 +64,7 @@ namespace GameService
                 }
             }
 
-            CellStatus shotResult = ShotDirection((Direction)numberDirection);
+            CellStatus shotResult = ShotDirection((Direction)numberDirection, OponentField);
 
             if (shotResult == CellStatus.Crippled)
             {
@@ -135,7 +74,6 @@ namespace GameService
 
             if (_shotState != CellStatus.Miss) Move();
         }
-        //tested
         private void CountingAllowableDirection()
         {
             for (var i = 0; i < _chekDirection.Length; i++) _chekDirection[i] = false;
@@ -167,8 +105,7 @@ namespace GameService
             }
             else _chekDirection[3] = true;
         }
-
-        private void SureShot(Direction direction)
+        private void SureShot(Direction direction, Field oponentField)
         {
             var di = 0;
             var dj = 0;
@@ -196,21 +133,20 @@ namespace GameService
             if ((GeneralFunction.PreventionIndexRange(_currentShot.I + di, _currentShot.J + dj))
                 && (!CheckShot[_currentShot.I + di, _currentShot.J + dj]))
             {
-                shotState = ShotDirection(direction);
+                shotState = ShotDirection(direction, oponentField);
             }
             else
             {
-                ChangeDirection();
-                shotState = ShotDirection(direction);
+                ChangeDirection(direction);
+                shotState = ShotDirection(direction, oponentField);
             }
             
-            if (shotState == CellStatus.Miss) ChangeDirection();
+            if (shotState == CellStatus.Miss) ChangeDirection(direction);
             else Move();
         }
-        //tested
-        private void ChangeDirection()
+        private void ChangeDirection(Direction direction)
         {
-            switch (_direction)
+            switch (direction)
             {
                 case Direction.Left:
                     _direction = Direction.Reight;
@@ -232,8 +168,7 @@ namespace GameService
 
             _currentShot = _firstShot;
         }
-        //tested
-        private CellStatus ShotDirection(Direction direciton)
+        private CellStatus ShotDirection(Direction direciton, Field oponentField)
         {
             int di;
             int dj;
@@ -256,7 +191,7 @@ namespace GameService
                     throw new ArgumentOutOfRangeException(nameof(direciton), direciton, null);
             }
 
-            _shotState = OponentField.Shot(OponentField.CellField[_currentShot.I + di, _currentShot.J + dj]);
+            _shotState = oponentField.Shot(oponentField.CellField[_currentShot.I + di, _currentShot.J + dj]);
             CheckShot[_currentShot.I + di, _currentShot.J + dj] = true;
 
 
@@ -271,6 +206,56 @@ namespace GameService
 
             return _shotState;
         }
+        protected virtual Location OverrideShot(bool[,] checkShot, int shot)
+        {
+            return GeneralFunction.FromNumberToLocation(checkShot, shot);
+        }
+        protected virtual Ship MarkDrownedShip()
+        {
+            var ship = OponentField.CellField[_currentShot.I, _currentShot.J].ShipIntoCell;
 
+            ship.MarkShip(CheckShot);
+
+            return ship;
+        }
+        protected virtual void CountingIntactCell()
+        {
+            IntactCell = 0;
+
+            foreach (var value in CheckShot) if (!value) IntactCell++;
+        }
+        public MyBotPlayer(Field field) : base(field)
+        {
+            _shotState = CellStatus.Miss;
+            GeneralFunction.FalseToMatrix(CheckShot);
+            IntactCell = Field.Size * Field.Size;
+        }
+        public override void Move()
+        {
+            Thread.Sleep(100);
+            if (_shotState == CellStatus.Drowned)
+                MarkDrownedShip();
+
+            CountingIntactCell();
+
+            switch (_moveState)
+            {
+                case MoveState.UnknownShipLocation:
+                    LongShot();
+                    break;
+                case MoveState.UnknownDirection:
+                    GuessingDirection();
+                    break;
+                case MoveState.KnownDirection:
+                    SureShot(_direction, OponentField);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+
+            if (_shotState == CellStatus.Miss)
+                CallTransferMove();
+
+        }
     }
 }

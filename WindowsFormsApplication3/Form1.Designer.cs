@@ -46,18 +46,20 @@
             this.aboutGameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.topSecretToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.topPlayersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.slylesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aquaStyleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.grayStyleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.LabelCaption = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.aquaStyleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.grayStyleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.slylesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.radioButtonEasyMode = new System.Windows.Forms.RadioButton();
+            this.panelGameMode = new System.Windows.Forms.Panel();
             this.radioButtonNormalMode = new System.Windows.Forms.RadioButton();
             this.labelGameMode = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            this.panelGameMode.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
@@ -67,7 +69,7 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button1.Font = new System.Drawing.Font("Modern No. 20", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(780, 626);
+            this.button1.Location = new System.Drawing.Point(804, 626);
             this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(130, 40);
@@ -85,7 +87,7 @@
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button2.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(109, 628);
+            this.button2.Location = new System.Drawing.Point(148, 628);
             this.button2.Margin = new System.Windows.Forms.Padding(4);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(228, 39);
@@ -102,7 +104,7 @@
             this.button3.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(525, 625);
+            this.button3.Location = new System.Drawing.Point(527, 384);
             this.button3.Margin = new System.Windows.Forms.Padding(4);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(53, 49);
@@ -120,7 +122,7 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Harrington", 18F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(148, 124);
+            this.label1.Location = new System.Drawing.Point(188, 124);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(144, 35);
@@ -133,7 +135,7 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Harrington", 18F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(794, 124);
+            this.label2.Location = new System.Drawing.Point(778, 124);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(127, 35);
@@ -146,7 +148,7 @@
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("Garamond", 13.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(63, 170);
+            this.label4.Location = new System.Drawing.Point(92, 170);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(143, 27);
@@ -159,7 +161,7 @@
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Garamond", 13.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(232, 170);
+            this.label5.Location = new System.Drawing.Point(274, 170);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(153, 27);
@@ -171,7 +173,7 @@
             this.label6.AutoSize = true;
             this.label6.BackColor = System.Drawing.Color.Transparent;
             this.label6.Font = new System.Drawing.Font("Garamond", 13.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(669, 170);
+            this.label6.Location = new System.Drawing.Point(692, 170);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(143, 27);
@@ -183,7 +185,7 @@
             this.label7.AutoSize = true;
             this.label7.BackColor = System.Drawing.Color.Transparent;
             this.label7.Font = new System.Drawing.Font("Garamond", 13.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label7.Location = new System.Drawing.Point(858, 170);
+            this.label7.Location = new System.Drawing.Point(876, 170);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(153, 27);
@@ -201,7 +203,7 @@
             this.slylesToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1064, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1108, 28);
             this.menuStrip1.TabIndex = 15;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -217,7 +219,7 @@
             // 
             this.exitToolStripMenuItem.Image = global::SeaBattleGame.Properties.Resources.Exit;
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(108, 26);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -253,11 +255,36 @@
             this.topPlayersToolStripMenuItem.Text = "Top players";
             this.topPlayersToolStripMenuItem.Click += new System.EventHandler(this.topPlayersToolStripMenuItem_Click);
             // 
+            // slylesToolStripMenuItem
+            // 
+            this.slylesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.aquaStyleToolStripMenuItem,
+            this.grayStyleToolStripMenuItem});
+            this.slylesToolStripMenuItem.Name = "slylesToolStripMenuItem";
+            this.slylesToolStripMenuItem.Size = new System.Drawing.Size(59, 24);
+            this.slylesToolStripMenuItem.Text = "Styles";
+            // 
+            // aquaStyleToolStripMenuItem
+            // 
+            this.aquaStyleToolStripMenuItem.Image = global::SeaBattleGame.Properties.Resources.aquaimg;
+            this.aquaStyleToolStripMenuItem.Name = "aquaStyleToolStripMenuItem";
+            this.aquaStyleToolStripMenuItem.Size = new System.Drawing.Size(153, 26);
+            this.aquaStyleToolStripMenuItem.Text = "Aqua style";
+            this.aquaStyleToolStripMenuItem.Click += new System.EventHandler(this.aquaStyleToolStripMenuItem_Click);
+            // 
+            // grayStyleToolStripMenuItem
+            // 
+            this.grayStyleToolStripMenuItem.Image = global::SeaBattleGame.Properties.Resources.greyicon;
+            this.grayStyleToolStripMenuItem.Name = "grayStyleToolStripMenuItem";
+            this.grayStyleToolStripMenuItem.Size = new System.Drawing.Size(153, 26);
+            this.grayStyleToolStripMenuItem.Text = "Gray style";
+            this.grayStyleToolStripMenuItem.Click += new System.EventHandler(this.grayStyleToolStripMenuItem_Click);
+            // 
             // LabelCaption
             // 
             this.LabelCaption.AutoSize = true;
             this.LabelCaption.Font = new System.Drawing.Font("Algerian", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelCaption.Location = new System.Drawing.Point(353, 56);
+            this.LabelCaption.Location = new System.Drawing.Point(378, 36);
             this.LabelCaption.Name = "LabelCaption";
             this.LabelCaption.Size = new System.Drawing.Size(382, 66);
             this.LabelCaption.TabIndex = 16;
@@ -280,7 +307,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(46, 200);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(54, 200);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 10;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
@@ -309,11 +336,11 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 44F));
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(625, 200);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(648, 200);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 10;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 39F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 41F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
@@ -325,50 +352,39 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(404, 404);
             this.tableLayoutPanel2.TabIndex = 18;
             // 
-            // aquaStyleToolStripMenuItem
-            // 
-            this.aquaStyleToolStripMenuItem.Image = global::SeaBattleGame.Properties.Resources.aquaimg;
-            this.aquaStyleToolStripMenuItem.Name = "aquaStyleToolStripMenuItem";
-            this.aquaStyleToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
-            this.aquaStyleToolStripMenuItem.Text = "Aqua style";
-            this.aquaStyleToolStripMenuItem.Click += new System.EventHandler(this.aquaStyleToolStripMenuItem_Click);
-            // 
-            // grayStyleToolStripMenuItem
-            // 
-            this.grayStyleToolStripMenuItem.Image = global::SeaBattleGame.Properties.Resources.greyicon;
-            this.grayStyleToolStripMenuItem.Name = "grayStyleToolStripMenuItem";
-            this.grayStyleToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
-            this.grayStyleToolStripMenuItem.Text = "Gray style";
-            this.grayStyleToolStripMenuItem.Click += new System.EventHandler(this.grayStyleToolStripMenuItem_Click);
-            // 
-            // slylesToolStripMenuItem
-            // 
-            this.slylesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.aquaStyleToolStripMenuItem,
-            this.grayStyleToolStripMenuItem});
-            this.slylesToolStripMenuItem.Name = "slylesToolStripMenuItem";
-            this.slylesToolStripMenuItem.Size = new System.Drawing.Size(59, 24);
-            this.slylesToolStripMenuItem.Text = "Styles";
-            // 
             // radioButtonEasyMode
             // 
             this.radioButtonEasyMode.AutoSize = true;
-            this.radioButtonEasyMode.Font = new System.Drawing.Font("Garamond", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButtonEasyMode.Location = new System.Drawing.Point(469, 376);
+            this.radioButtonEasyMode.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.radioButtonEasyMode.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.radioButtonEasyMode.Location = new System.Drawing.Point(106, 24);
             this.radioButtonEasyMode.Name = "radioButtonEasyMode";
-            this.radioButtonEasyMode.Size = new System.Drawing.Size(86, 35);
+            this.radioButtonEasyMode.Size = new System.Drawing.Size(60, 21);
             this.radioButtonEasyMode.TabIndex = 19;
             this.radioButtonEasyMode.Text = "Easy";
             this.radioButtonEasyMode.UseVisualStyleBackColor = true;
+            // 
+            // panelGameMode
+            // 
+            this.panelGameMode.BackColor = System.Drawing.Color.SteelBlue;
+            this.panelGameMode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelGameMode.Controls.Add(this.labelGameMode);
+            this.panelGameMode.Controls.Add(this.radioButtonEasyMode);
+            this.panelGameMode.Controls.Add(this.radioButtonNormalMode);
+            this.panelGameMode.Location = new System.Drawing.Point(0, 31);
+            this.panelGameMode.Name = "panelGameMode";
+            this.panelGameMode.Size = new System.Drawing.Size(190, 59);
+            this.panelGameMode.TabIndex = 22;
             // 
             // radioButtonNormalMode
             // 
             this.radioButtonNormalMode.AutoSize = true;
             this.radioButtonNormalMode.Checked = true;
-            this.radioButtonNormalMode.Font = new System.Drawing.Font("Garamond", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButtonNormalMode.Location = new System.Drawing.Point(469, 427);
+            this.radioButtonNormalMode.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.radioButtonNormalMode.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.radioButtonNormalMode.Location = new System.Drawing.Point(11, 24);
             this.radioButtonNormalMode.Name = "radioButtonNormalMode";
-            this.radioButtonNormalMode.Size = new System.Drawing.Size(126, 35);
+            this.radioButtonNormalMode.Size = new System.Drawing.Size(78, 21);
             this.radioButtonNormalMode.TabIndex = 20;
             this.radioButtonNormalMode.TabStop = true;
             this.radioButtonNormalMode.Text = "Normal ";
@@ -377,12 +393,11 @@
             // labelGameMode
             // 
             this.labelGameMode.AutoSize = true;
-            this.labelGameMode.Font = new System.Drawing.Font("Algerian", 15.8F);
-            this.labelGameMode.Location = new System.Drawing.Point(454, 325);
+            this.labelGameMode.Location = new System.Drawing.Point(41, 4);
             this.labelGameMode.Name = "labelGameMode";
-            this.labelGameMode.Size = new System.Drawing.Size(165, 30);
+            this.labelGameMode.Size = new System.Drawing.Size(85, 17);
             this.labelGameMode.TabIndex = 21;
-            this.labelGameMode.Text = "Game mode";
+            this.labelGameMode.Text = "Game Mode";
             // 
             // Form1
             // 
@@ -390,10 +405,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSkyBlue;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1064, 681);
-            this.Controls.Add(this.labelGameMode);
-            this.Controls.Add(this.radioButtonNormalMode);
-            this.Controls.Add(this.radioButtonEasyMode);
+            this.ClientSize = new System.Drawing.Size(1108, 681);
+            this.Controls.Add(this.panelGameMode);
             this.Controls.Add(this.tableLayoutPanel2);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.LabelCaption);
@@ -407,7 +420,7 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.menuStrip1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(4);
@@ -417,6 +430,8 @@
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            this.panelGameMode.ResumeLayout(false);
+            this.panelGameMode.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -446,9 +461,10 @@
         private System.Windows.Forms.ToolStripMenuItem slylesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aquaStyleToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem grayStyleToolStripMenuItem;
-        private System.Windows.Forms.Label labelGameMode;
-        private System.Windows.Forms.RadioButton radioButtonNormalMode;
         private System.Windows.Forms.RadioButton radioButtonEasyMode;
+        private System.Windows.Forms.Panel panelGameMode;
+        private System.Windows.Forms.RadioButton radioButtonNormalMode;
+        private System.Windows.Forms.Label labelGameMode;
     }
 }
 

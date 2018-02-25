@@ -1,28 +1,24 @@
 ﻿using System;
 using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
 using GameCore;
 using GameDataLayer;
 using GameService;
 using SeaBattleGame.Properties;
-using View = GameService.View;
+using ViewCell = GameService.ViewCell;
 
 namespace SeaBattleGame
 {
     public partial class Form1 : Form
     {
-        
-        private RatingForm _ratingForm;
-        private readonly GameController _controller;
-        public readonly IRepository<BattlePlayer> Players;
-        private readonly View _view = new View();
-        public event EventHandler BeginGameEvent;
-        //public event EventHandler EndGameEvent;
-        //public event EventHandler BeforeGameEvent;
         private static readonly Random Random = new Random(DateTime.Now.Millisecond);
+        private RatingForm _ratingForm;
+        private readonly GameController _controller;       
+        private readonly ViewCell _view = new ViewCell();
+        public event EventHandler BeginGameEvent;
+        public readonly IRepository<BattlePlayer> Players;
         public static string PlayerName { get; set; }
       
         public Form1()
@@ -31,12 +27,9 @@ namespace SeaBattleGame
            
             _controller = new GameController();
             BeginGameEvent += BeginGame;
-            //_controller.RandomArrangement(_controller.LeftField);
             _controller.LeftField.DisplayCompletionCell();
             FillTable(tableLayoutPanel1,_controller.LeftField.CellField);
             FillTable(tableLayoutPanel2 ,_controller.RightField.CellField);
-            _view.DrawLeftPlayer(label4, label5, label1);
-            _view.DrawRightPlayer(label7, label6, label2);
             Players = new PlayersRepository();
             var greetingform = new GreetingForm();
             greetingform.Click += (senderSlave, eSlave) =>
@@ -77,7 +70,7 @@ namespace SeaBattleGame
         }
         private void BeforeGame()
         {
-
+            
             ResetTable();
             _controller.RandomArrangement(_controller.LeftField);
             _controller.LeftField.DisplayCompletionCell();
@@ -86,24 +79,32 @@ namespace SeaBattleGame
             button3.Visible = false;
             button1.Visible = true;
             button2.Visible = true;
-
-
         }
         private void EndGame()
         {
-
-            UnsubscriptionOponentField();
+           
             _controller.RightPlayer.TransferMove -= _controller.Transfer_Move;
             _controller.LeftPlayer.TransferMove -= _controller.Transfer_Move;
-
+            UnsubscriptionOponentField();
+            _controller.LeftPlayer.OponentChanged -= Oponent_Changed;
+            _controller.GameOver(_controller.LeftStatistics, _controller.RightStatistics);
+            AddOrEditPlayer();
+            MessageBox.Show(_controller.CountWin != 0
+                ? @"Congratulations! You are winner!"
+                : @"Sorry, you are loser >_<");
 
             button3.Visible = true;
+            _controller.ResetStatistics(_controller.RightStatistics);
+            _controller.ResetStatistics(_controller.LeftStatistics);
 
+            label4.Text = @"Ship amount: " + _controller.RightStatistics.CountShips;
+            label5.Text = @"Shot amount: " + _controller.RightStatistics.CountLeftShot;
+            label6.Text = @"Ship amount: " + _controller.LeftStatistics.CountShips;
+            label7.Text = @"Shot amount: " + _controller.LeftStatistics.CountLeftShot;
 
         }
         private void BeginGame(object sender, EventArgs e)
         {
-            //_controller.GameStatus = GameStatus.Begin;
             if (radioButtonEasyMode.Checked)
             {
                 _controller.GetEasyPlayer();
@@ -115,11 +116,11 @@ namespace SeaBattleGame
             button1.Visible = false;
             button2.Visible = false;
             _controller.LeftPlayer.OponentChanged += Oponent_Changed;
-            SubscriptionOwnField();
-            SubscriptionOponentField();
+          
             _controller.BeginGameMethod();
 
             _controller.Init();
+            SubscriptionOponentField();
 
         }
 
@@ -201,9 +202,8 @@ namespace SeaBattleGame
 
         private void button3_Click(object sender, EventArgs e)
         {
-            labelGameMode.Visible = true;
-            radioButtonEasyMode.Visible = true;
-            radioButtonNormalMode.Visible = true;
+
+            panelGameMode.Visible = true;
 
             BeforeGame();
             _controller.EnabledSwitch(_controller.LeftField.CellField, true);
@@ -211,14 +211,9 @@ namespace SeaBattleGame
             foreach (var value in _controller.RightField.CellField)
                 value.CellStatus = CellStatus.Empty;
 
-            _controller.RandomArrangement(_controller.LeftField);
 
             _controller.RandomArrangement(_controller.RightField);
-           
-            _controller.GameOver(_controller.LeftStatistics,_controller.RightStatistics);
-            AddOrEditPlayer();
-            _controller.ResetStatistics(_controller.RightStatistics);
-            _controller.ResetStatistics(_controller.LeftStatistics);
+
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -233,21 +228,14 @@ namespace SeaBattleGame
         {
             button1.Visible = false;
             button2.Visible = false;
-            labelGameMode.Visible = false;
-            radioButtonEasyMode.Visible = false;
-            radioButtonNormalMode.Visible = false;
+            panelGameMode.Visible = false;
+
             _controller.EnabledSwitch(_controller.LeftField.CellField, false);
-
-           // if (MouseEvent.BeginArround) MouseEvent.EndedArround();
-
             _controller.EndedGame = false;
             BeginGameEvent?.Invoke(null, EventArgs.Empty);
-
             var oneMove = (Side)Random.Next(0, 2);
-
             _controller.Transfer_Move(oneMove == Side.Right ? _controller.LeftPlayer : _controller.RightPlayer,
                 EventArgs.Empty);
-
             _controller.EnabledSwitch(_controller.RightField.CellField, true);
         }
 
@@ -258,16 +246,7 @@ namespace SeaBattleGame
             SubscriptionOponentField();
         }
 
-        private void SubscriptionOwnField()
-        {
-            foreach (var value in _controller.LeftPlayer.OwnField.CellField)
-            {
-                value.MouseClick += MouseEvent.MouseClicked;
-
-
-            }
-        }
-
+       
         private void SubscriptionOponentField()
         {
             foreach (var value in _controller.RightField.CellField)
@@ -275,15 +254,13 @@ namespace SeaBattleGame
                 value.MouseClick += Cell_Click;
             }
         }
-
         private void UnsubscriptionOponentField()
         {
             foreach (var value in  _controller.RightField.CellField)
             {
                 value.MouseClick -= Cell_Click;
             }
-        }
-      
+        }      
         private void Cell_Click(object sender, MouseEventArgs e)
         {                                   
                 if (!((HumanPlay)(_controller.LeftPlayer)).CanMove) return;
@@ -316,9 +293,7 @@ namespace SeaBattleGame
         }
         private void AddOrEditPlayer()
         {
-            IQueryable<BattlePlayer> query= Players.GetPlayers(PlayerName);
-            //int winamount = 0;
-            //int defeatamount = 0;
+            var query= Players.GetPlayers(PlayerName);
             if (query != null)
             {
                 foreach (var q in query)
@@ -351,16 +326,16 @@ namespace SeaBattleGame
                 {
                     Name = PlayerName,
                     WinAmount = _controller.CountWin,
-                    DefeatAmount = _controller.CountDefeat,
-                    Rating = _controller.CountWin / _controller.CountDefeat + 100
+                    DefeatAmount = _controller.CountDefeat
                 };
+                if(_controller.CountDefeat !=0)
+                player.Rating = _controller.CountWin / _controller.CountDefeat + 100;
+                else player.Rating = _controller.CountWin + 100;
                 Players.Create(player);
                 Players.Save();
             }
         }
 
-      
-       
-       
+        
     }
 }

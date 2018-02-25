@@ -14,7 +14,7 @@ namespace GameDataLayer
 
         public PlayersRepository()
         {
-            this.db = new PlayersDBEntities();
+            db = new PlayersDBEntities();
         }
 
         public IEnumerable GetTopTen()
@@ -94,18 +94,18 @@ namespace GameDataLayer
             db.SaveChanges();
         }
 
-        private bool _disposed = false;
+        private bool _disposed;
 
         public virtual void Dispose(bool disposing)
         {
-            if (!this._disposed)
+            if (!_disposed)
             {
                 if (disposing)
                 {
                     db.Dispose();
                 }
             }
-            this._disposed = true;
+            _disposed = true;
         }
 
         public void Dispose()

@@ -3,14 +3,7 @@ namespace GameCore
 {
     public class BaseShip
     {
-        int size;
-       
-
-        public int Size
-        {
-            get { return size; }
-            set { size = value; }
-        }
+        public int Size { get; set; }
 
 
         public Orientation Orientation { get; set; }

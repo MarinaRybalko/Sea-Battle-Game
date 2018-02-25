@@ -12,7 +12,7 @@ namespace GameCore
 
         public event EventHandler MadeShot;
 
-        public static int ShipsCount { get; } =  (int)ShipType.FourdeckShips + (int)ShipType.ThreedeckShips + (int)ShipType.TwodeckShips + (int)ShipType.OnedeckShips;
+       public static int ShipsCount { get; } = (int)ShipType.FourdeckShips + (int)ShipType.ThreedeckShips + (int)ShipType.TwodeckShips + (int)ShipType.OnedeckShips;
 
         public RandomField RandomShips { get; set; }
 
@@ -51,9 +51,6 @@ namespace GameCore
             var location = ship.Location;
             var orientation = ship.Orientation;
             var size = ship.Size;
-          
-            int shiftDown = 0;
-            int shiftRight = 0;
 
             if(orientation== Orientation.Vertical)
             { 
@@ -109,8 +106,8 @@ namespace GameCore
 
             for (var i = 0; i < size; i++)
             {
-                shiftDown = i * (1 - (int)orientation);
-                shiftRight = i * (int)orientation;
+                var shiftDown = i * (1 - (int)orientation);
+                var shiftRight = i * (int)orientation;
 
                 CellField[location.I + shiftDown, location.J + shiftRight].CellStatus =
                     CellStatus.Drowned;

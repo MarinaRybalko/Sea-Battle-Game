@@ -1,5 +1,4 @@
-﻿using System;
-using System.Diagnostics;
+﻿
 using System.Threading;
 using  GameCore;
 
@@ -8,52 +7,40 @@ namespace CustomGamePlugin
 
     public class EasyModeBot : Player
     {
-        private CellStatus _shotState;
-        protected bool[,] CheckShot = new bool[Field.Size, Field.Size];
         private Location _currentShot;
-        protected int IntactCell { get; set; }
-
-
-
         private int _corditateI;
-        private int _cordinateJ = 0;
-        private Location _firstShot;
-
+        private int _cordinateJ;
+        private CellStatus _shotState;
+        private readonly bool[,] _checkShot = new bool[Field.Size, Field.Size];
         public EasyModeBot(Field field) : base(field)
         {
             _shotState = CellStatus.Miss;
-            GeneralFunction.FalseToMatrix(CheckShot);
-            IntactCell = Field.Size * Field.Size;
+            GeneralFunction.FalseToMatrix(_checkShot);
         }
-
         public override void Move()
         {
-            Thread.Sleep(100);
-
-
+            
             Shot();
 
             if (_shotState == CellStatus.Miss)
                 CallTransferMove();
 
         }
-
         protected virtual Ship MarkDrownedShip()
         {
             var ship = OponentField.CellField[_currentShot.I, _currentShot.J].ShipIntoCell;
 
-            ship.MarkShip(CheckShot);
+            ship.MarkShip(_checkShot);
 
             return ship;
         }
-        //tested
-
         private void Shot()
         {
             if (_corditateI < Field.Size)
             {
                 if (_shotState == CellStatus.Drowned)
                     MarkDrownedShip();
+                Thread.Sleep(140);
 
                 if (!(_cordinateJ < Field.Size))
                 {
@@ -76,14 +63,10 @@ namespace CustomGamePlugin
 
             if (_shotState != CellStatus.Miss) Move();
         }
-        //tested
         protected virtual Location OverrideShot(bool[,] checkShot, int shot)
         {
             return GeneralFunction.FromNumberToLocation(checkShot, shot);
         }
-
-
-        //tested
 
     }
 }

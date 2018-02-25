@@ -1,13 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
 using GameCore;
 
 namespace GameService
 {
     public class RandomFieldAlgorithm: RandomField
     {
-      
-        //tested
+        private void CountingValidCell(BaseShip prototype)
+        {
+            GeneralFunction.FalseToMatrix(NotvalidCellLocation);
+
+            ValidCell = 0;
+            for (var i = 0; i < Field.Size; i++)
+            {
+                for (var j = 0; j < Field.Size; j++)
+                {
+                    if (IsFreeLocation(prototype, new Location(i, j))) ValidCell++;
+                }
+            }
+        }
         public  void NewArrangement(Field field)
         {
             GeneralFunction.FalseToMatrix(CompletingCell);
@@ -20,10 +30,10 @@ namespace GameService
                     Prototype.Size = Enum.GetValues(typeof( Direction)).Length - i;
 
                     CountingValidCell(Prototype);
-                    _oneDimencional = Random.Next(0, _validCell);
+                    OneDimencional = Random.Next(0, ValidCell);
 
                     Prototype.Location =
-                        GeneralFunction.FromNumberToLocation(NotvalidCellLocation, _oneDimencional);
+                        GeneralFunction.FromNumberToLocation(NotvalidCellLocation, OneDimencional);
                
                     ListShips.Add(new Ship(Prototype.Location, Prototype.Orientation,
                         Prototype.Size, field));
@@ -31,22 +41,7 @@ namespace GameService
                     ListShips[ListShips.Count - 1].MarkShip(CompletingCell);
                 }
             }
-        }
-        //tested
-        private  void CountingValidCell(BaseShip prototype)
-        {
-            GeneralFunction.FalseToMatrix(NotvalidCellLocation);
-
-            _validCell = 0;
-            for (var i = 0; i < Field.Size; i++)
-            {
-                for (var j = 0; j < Field.Size; j++)
-                {
-                    if (IsFreeLocation(prototype, new Location(i, j))) _validCell++;
-                }
-            }
-        }
-        //tested
+        }   
         public bool IsFreeLocation(BaseShip prototype, Location location)
         {
             var dj = 0;
@@ -74,7 +69,6 @@ namespace GameService
 
             return true;
         }
-        //tested
         public  void RecalculationCompletingCell(Ship ship)
         {
             ListShips.Remove(ship);
@@ -82,14 +76,11 @@ namespace GameService
            
             foreach (var value in ListShips) value.MarkShip(CompletingCell);            
         }
-        //tested
         public void AddShips(Ship ship)
         {
             ListShips.Add(ship);
             ship.MarkShip(CompletingCell);
         }
-
-
         public RandomFieldAlgorithm(Field field) : base(field)
         {
             NewArrangement(field);

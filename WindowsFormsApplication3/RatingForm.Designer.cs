@@ -83,9 +83,6 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dataGridView1;
-
-        private System.Windows.Forms.BindingSource battlePlayerBindingSource;
-
         private System.Windows.Forms.Label label1;
     }
 }
