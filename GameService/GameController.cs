@@ -40,7 +40,15 @@ namespace GameService
         public void GetEasyPlayer()
         {
             var fullpath = AppDomain.CurrentDomain.BaseDirectory;
-            var dllPath = fullpath.Replace(@"WindowsFormsApplication3\bin\Debug\", @"Plugins\CustomGamePlugin.dll");
+            var dllPath = string.Empty;
+            if (fullpath.Contains(@"WindowsFormsApplication3\bin\Debug\"))
+            {
+                dllPath = fullpath.Replace(@"WindowsFormsApplication3\bin\Debug\", @"Plugins\CustomGamePlugin.dll");
+            }
+            else if (fullpath.Contains(@"SeaBattleMVVM\bin\Debug\"))
+            {
+                dllPath = fullpath.Replace(@"SeaBattleMVVM\bin\Debug\", @"Plugins\CustomGamePlugin.dll");
+            }
             var pluginAssembly = Assembly.LoadFrom(dllPath);
 
             foreach (var plugin in pluginAssembly.GetTypes())

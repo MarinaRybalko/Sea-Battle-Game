@@ -60,6 +60,7 @@
       <HintPath>Styles\IStyle.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -158,6 +159,7 @@
     <None Include="Resources\PlayersDB.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Resources\MainIcon.ico" />
     <Content Include="Resources\PlayersDB_log.ldf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>PlayersDB.mdf</DependentUpon>

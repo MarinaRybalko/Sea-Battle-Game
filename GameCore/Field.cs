@@ -1,5 +1,6 @@
 ﻿using System;
 
+
 namespace GameCore
 {
    public class Field
@@ -137,8 +138,10 @@ namespace GameCore
 
         public CellStatus Shot(Cell cellShot)
         {
+        
             if (MatrixShips[cellShot.CellLocation.I, cellShot.CellLocation.J])
             {
+               
                 if (cellShot.ShipIntoCell.CheckDrowned(cellShot.CellLocation))
                 {
                     DrownedShip(cellShot.ShipIntoCell);

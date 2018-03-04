@@ -69,7 +69,7 @@ namespace GameService
                     throw new ArgumentOutOfRangeException();
             }
 
-            cell.BackColor = Color.Azure;
+            //cell.BackColor = Color.Azure;
             e.Graphics.Clear(_color);
 
             if ((cell.CellStatus == CellStatus.Crippled) ||

@@ -70,7 +70,7 @@ namespace SeaBattleGame
         }
         private void BeforeGame()
         {
-            
+
             ResetTable();
             _controller.RandomArrangement(_controller.LeftField);
             _controller.LeftField.DisplayCompletionCell();
@@ -82,7 +82,7 @@ namespace SeaBattleGame
         }
         private void EndGame()
         {
-           
+
             _controller.RightPlayer.TransferMove -= _controller.Transfer_Move;
             _controller.LeftPlayer.TransferMove -= _controller.Transfer_Move;
             UnsubscriptionOponentField();
@@ -109,14 +109,14 @@ namespace SeaBattleGame
             {
                 _controller.GetEasyPlayer();
             }
-            else if(radioButtonNormalMode.Checked)
+            else if (radioButtonNormalMode.Checked)
             {
-               _controller.GetNormalPlayer();
-            }            
+                _controller.GetNormalPlayer();
+            }
             button1.Visible = false;
             button2.Visible = false;
             _controller.LeftPlayer.OponentChanged += Oponent_Changed;
-          
+
             _controller.BeginGameMethod();
 
             _controller.Init();
@@ -139,14 +139,14 @@ namespace SeaBattleGame
             button.BackColor = Color.DodgerBlue;
             button.ForeColor = Color.White;
         }
-      
+
         private void aquaStyleToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
             {
                 var assemblyAqua = Assembly.Load(Resources.StyleAqua);
-                var types  = assemblyAqua.GetTypes();
-                foreach(var t in types)
+                var types = assemblyAqua.GetTypes();
+                foreach (var t in types)
                 {
                     if (!t.ToString().Contains("AquaStyle")) continue;
                     var setstyle = t.GetMethod("SetBackgroundStyle");
@@ -154,7 +154,7 @@ namespace SeaBattleGame
                     object[] param = { this };
                     if (setstyle != null) setstyle.Invoke(obj, param);
 
-                }     
+                }
             }
             catch (FileNotFoundException)
             {
@@ -166,7 +166,7 @@ namespace SeaBattleGame
         {
             try
             {
-                var assemblyAqua = Assembly.Load(Resources.StyleGray) ;
+                var assemblyAqua = Assembly.Load(Resources.StyleGray);
 
                 var types = assemblyAqua.GetTypes();
                 foreach (var t in types)
@@ -183,7 +183,7 @@ namespace SeaBattleGame
                 MessageBox.Show(@"Sorry. This style temporarily unavailable");
             }
         }
-      
+
         private void topPlayersToolStripMenuItem_Click(object sender, EventArgs e)
         {
             _ratingForm = new RatingForm();
@@ -192,7 +192,7 @@ namespace SeaBattleGame
 
         private void aboutGameToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(@"Sea Battle "+Environment.NewLine+@"Version 1.0.0"+Environment.NewLine+@"Developer: Marina Rybalko");
+            MessageBox.Show(@"Sea Battle " + Environment.NewLine + @"Version 1.0.0" + Environment.NewLine + @"Developer: Marina Rybalko");
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -220,7 +220,7 @@ namespace SeaBattleGame
         {
             _controller.RandomArrangement(_controller.LeftField);
             _controller.LeftField.DisplayCompletionCell();
-         
+
             tableLayoutPanel1.Refresh();
         }
 
@@ -246,7 +246,7 @@ namespace SeaBattleGame
             SubscriptionOponentField();
         }
 
-       
+
         private void SubscriptionOponentField()
         {
             foreach (var value in _controller.RightField.CellField)
@@ -256,36 +256,36 @@ namespace SeaBattleGame
         }
         private void UnsubscriptionOponentField()
         {
-            foreach (var value in  _controller.RightField.CellField)
+            foreach (var value in _controller.RightField.CellField)
             {
                 value.MouseClick -= Cell_Click;
             }
-        }      
+        }
         private void Cell_Click(object sender, MouseEventArgs e)
-        {                                   
-                if (!((HumanPlay)(_controller.LeftPlayer)).CanMove) return;
+        {
+            if (!((HumanPlay)(_controller.LeftPlayer)).CanMove) return;
 
-                var cell = (Cell)sender;
-                cell.Enabled = false;
+            var cell = (Cell)sender;
+            cell.Enabled = false;
 
-                var shotResult = _controller.LeftPlayer.OponentField.Shot(cell);
+            var shotResult = _controller.LeftPlayer.OponentField.Shot(cell);
 
-                if (shotResult == CellStatus.Miss)
-                {
-                    ((HumanPlay)(_controller.LeftPlayer)).CanMove = false;
-                    ((HumanPlay)(_controller.LeftPlayer)).CallTransferMove();
-                }
+            if (shotResult == CellStatus.Miss)
+            {
+                ((HumanPlay)(_controller.LeftPlayer)).CanMove = false;
+                ((HumanPlay)(_controller.LeftPlayer)).CallTransferMove();
+            }
 
-                FillTable(tableLayoutPanel1, _controller.LeftField.CellField);
-                Refresh();
-           
+            FillTable(tableLayoutPanel1, _controller.LeftField.CellField);
+            Refresh();
+
             label4.Text = @"Ship amount: " + _controller.RightStatistics.CountShips;
             label5.Text = @"Shot amount: " + _controller.RightStatistics.CountLeftShot;
-            label6.Text = @"Ship amount: "+ _controller.LeftStatistics.CountShips;
+            label6.Text = @"Ship amount: " + _controller.LeftStatistics.CountShips;
             label7.Text = @"Shot amount: " + _controller.LeftStatistics.CountLeftShot;
 
-       
-            if (_controller.RightStatistics.CountShips==0 || _controller.LeftStatistics.CountShips==0)
+
+            if (_controller.RightStatistics.CountShips == 0 || _controller.LeftStatistics.CountShips == 0)
             {
                 EndGame();
             }
@@ -293,31 +293,31 @@ namespace SeaBattleGame
         }
         private void AddOrEditPlayer()
         {
-            var query= Players.GetPlayers(PlayerName);
+            var query = Players.GetPlayers(PlayerName);
             if (query != null)
             {
                 foreach (var q in query)
                 {
                     if (q.WinAmount == null) continue;
-                    var win = (int)q.WinAmount + _controller. CountWin;
+                    var win = (int)q.WinAmount + _controller.CountWin;
                     if (q.DefeatAmount == null) continue;
-                    var defeat = (int)q.DefeatAmount + _controller. CountDefeat;
+                    var defeat = (int)q.DefeatAmount + _controller.CountDefeat;
                     int rating;
                     if (defeat == 0)
                     {
-                        rating = win+100;
+                        rating = win + 100;
 
                     }
                     else
                     {
-                        rating = (win / defeat)+100;
+                        rating = (win / defeat) + 100;
 
                     }
                     q.WinAmount = win;
                     q.DefeatAmount = defeat;
                     q.Rating = rating;
                 }
-    
+
                 Players.Save();
             }
             else
@@ -328,14 +328,14 @@ namespace SeaBattleGame
                     WinAmount = _controller.CountWin,
                     DefeatAmount = _controller.CountDefeat
                 };
-                if(_controller.CountDefeat !=0)
-                player.Rating = _controller.CountWin / _controller.CountDefeat + 100;
+                if (_controller.CountDefeat != 0)
+                    player.Rating = _controller.CountWin / _controller.CountDefeat + 100;
                 else player.Rating = _controller.CountWin + 100;
                 Players.Create(player);
                 Players.Save();
             }
         }
 
-        
+
     }
 }
