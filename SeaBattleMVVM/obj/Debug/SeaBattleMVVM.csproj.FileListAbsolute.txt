@@ -38,3 +38,12 @@ C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\SeaBattleMVVM
 C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\SeaBattleMVVM\obj\Debug\View\RatingWindow.g.cs
 C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\SeaBattleMVVM\obj\Debug\View\MainWindow.baml
 C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\SeaBattleMVVM\obj\Debug\View\MainWindow.g.cs
+C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\SeaBattleMVVM\bin\Debug\ru\SeaBattleMVVM.resources.dll
+C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\SeaBattleMVVM\obj\Debug\SeaBattleMVVM.MainWindowRes.resources
+C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\SeaBattleMVVM\obj\Debug\SeaBattleMVVM.MainWindowRes.ru.resources
+C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\SeaBattleMVVM\obj\Debug\ru\SeaBattleMVVM.resources.dll
+C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\SeaBattleMVVM\bin\Debug\LocalizatorHelper.dll
+C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\SeaBattleMVVM\bin\Debug\LocalizatorHelper.pdb
+C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\SeaBattleMVVM\bin\Debug\NLog.config
+C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\SeaBattleMVVM\bin\Debug\NLog.dll
+C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\SeaBattleMVVM\bin\Debug\NLog.xml

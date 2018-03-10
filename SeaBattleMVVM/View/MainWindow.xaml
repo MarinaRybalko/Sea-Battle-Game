@@ -4,13 +4,14 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-      
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
+        xmlns:l="clr-namespace:LocalizatorHelper;assembly=LocalizatorHelper"
         mc:Ignorable="d"
         ResizeMode="NoResize"
-        Title="Sea Battle" Height="560" Width="900" Icon="pack://siteoforigin:,,,/Resources/MainIcon.ico">
+        Title="sea Battle" Height="560" Width="900" Icon="pack://siteoforigin:,,,/Resources/MainIcon.ico">
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibility" />
+        <l:LocalisationHelper x:Key="Helper"></l:LocalisationHelper>
     </Window.Resources>
     <i:Interaction.Triggers>
 
@@ -22,45 +23,53 @@
     <Grid Background="LightSkyBlue" >
 
         <ToolBar x:Name="MainMenuToolBar" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" Width="2000" Background="SteelBlue">
-            <Button x:Name="ExitButton" Content="Exit" Width="50" Height="20" Command="{Binding ExitCommand, Mode=OneWay}" 
+            <Button x:Name="ExitButton" Content="{Binding Source={StaticResource Helper}, Path=[MainWindowRes.Exit_Btn]}" Width="50" Height="20" Command="{Binding ExitCommand, Mode=OneWay}" 
                     CommandParameter="{Binding ElementName=SeaBattle}"/>
-            <Button x:Name="InformationButton" Content="Information" Width="90" Height="20" Command="{Binding Path = InformationCommand}"/>
-            <Button x:Name="TopPlayersButton" Content="Top Players" Width="70" Height="22" Command="{Binding Path=TopPlayersCommand}"/>
+            <Button x:Name="InformationButton" Content="{Binding Source={StaticResource Helper}, Path=[MainWindowRes.Inform_Btn]}" Width="90" Height="20" Command="{Binding Path = InformationCommand}"/>
+            <Button x:Name="TopPlayersButton" Content="{Binding Source={StaticResource Helper}, Path=[MainWindowRes.TopPlayers_Btn]}" Width="109" Height="22" Command="{Binding Path=TopPlayersCommand}" Margin="0,-1,0,-1.8"/>
+            <Menu x:Name="Menu" Height="21" VerticalAlignment="Top" Width="145" Background="SteelBlue" Margin="0,0,0,-1.8">
+                <MenuItem Header="{Binding [MainWindowRes.Language_Btn], Source={StaticResource Helper}}" Height="22" Margin="0">
+                    <MenuItem Header="Русский" Command="{Binding RussianCommand}"/>
+                    <MenuItem Header="English" Command="{Binding EnglishCommand}"/>
+                </MenuItem>
+            </Menu>
         </ToolBar>
-        <Canvas HorizontalAlignment="Left" Height="35" Margin="3,25,0,0" VerticalAlignment="Top" Width="120" Background="SteelBlue" Visibility="{Binding Path= IsButtonsStartVisible, Converter={StaticResource BooleanToVisibility}}"  >
-            <TextBlock Name="ItemsControlGameMode" Text="Game modes"  Margin="0,0,0,0" Canvas.Left="23" Canvas.Top="0" Padding="0,0,0,5"/>
-            <RadioButton Name="RadioButtonNormal" Content="Normal" IsChecked="{Binding Path=IsGameModeNormal}" Margin="0,15,5,0" GroupName="Modes"  />
-            <RadioButton Name="RadioButtonEasy" Content="Easy" Margin="70,15,5,0" GroupName="Modes"/>
+        <Canvas HorizontalAlignment="Left" Height="35" Margin="3,25,0,0" VerticalAlignment="Top" Width="174" Background="SteelBlue" Visibility="{Binding Path= IsButtonsStartVisible, Converter={StaticResource BooleanToVisibility}}"  >
+            <TextBlock Name="ItemsControlGameMode" Text="{Binding Source={StaticResource Helper}, Path=[MainWindowRes.GameModes_Lbl]}"  Margin="0,0,0,0" Canvas.Left="23" Canvas.Top="0" Padding="0,0,0,5"/>
+            <RadioButton Name="RadioButtonNormal" Content="{Binding Source={StaticResource Helper}, Path=[MainWindowRes.Normal_Lbl]}"  IsChecked="{Binding Path=IsGameModeNormal}" Margin="0,15,5,0" GroupName="Modes"  />
+            <RadioButton Name="RadioButtonEasy" Content="{Binding Source={StaticResource Helper}, Path=[MainWindowRes.Easy_Lbl]}" Margin="70,15,5,0" GroupName="Modes"/>
         </Canvas>
         <Canvas Name="CanvasFields">
-            <TextBlock Name="BlockPlayerStatistics" FontStyle="Italic" FontFamily="Harrington" Margin="40,70,0,0" >
-                  <TextBlock Name="BlockName" Text="Your field" Width="190" Height="30" TextAlignment="Right" FontSize="20"/>
-                  <LineBreak></LineBreak>
-                  <TextBlock Name="BlockShot" Text="{Binding Path=ShotAmountLeft}" Padding="20,0,50,0" FontSize="18"/>
-                  <TextBlock Name="BlockShip" Text="{Binding Path=ShipAmountLeft}" FontSize="18"/>  
-             </TextBlock>
+            <TextBlock x:Name="BlockPlayerStatistics" FontStyle="Italic" Canvas.Left="30" Canvas.Top="69" >
+                    <TextBlock x:Name="BlockName" Text="{Binding [MainWindowRes.YourField_Lbl], Source={StaticResource Helper}}" FontStyle="Italic" FontFamily="Monotype Corsiva" Width="190" Height="30" TextAlignment="Right" FontSize="24"/>
+                    <LineBreak></LineBreak>
+                    <TextBlock Name="BlockShot" Text="{Binding Source={StaticResource Helper}, Path=[MainWindowRes.ShotAmount_Lbl]}" Padding="20,0,0,0" FontSize="20" FontStyle="Italic" FontFamily="Monotype Corsiva"/>
+                    <Label Name="LabelShotYourField" Content="{Binding Path=ShotAmountLeft}" FontSize="18" Padding="0,-15,0,0" FontStyle="Italic" FontFamily="Monotype Corsiva" Height="15" Width="25"/>
+                    <TextBlock Name="BlockShip" Text="{Binding Source={StaticResource Helper}, Path=[MainWindowRes.ShipAmount_Lbl]}"  Padding="20,0,0,0" FontSize="20" FontStyle="Italic" FontFamily="Monotype Corsiva"/>  
+                    <Label Name="LabelShipYourField" Content="{Binding Path=ShipAmountLeft}" FontSize="18" Padding="0,-15,0,0" FontStyle="Italic" FontFamily="Monotype Corsiva" Height="15" Width="25"/>
+            </TextBlock>
             <UniformGrid Name="UniformGridLeftField"  Width="330" Height="330" Background="Gray" HorizontalAlignment="Left" Margin="30,130,0,0">
-                <Rectangle Fill="Azure" Margin="0,1,1,0" Name="Rectangle1L" RadiusX="{Binding Path=Status[0\,0]}" >
+                <Rectangle Fill="Azure" Margin="0,1,1,0" Name="Rectangle1L" DataContext="{Binding Path=Status[0\,0]}" >
                     <i:Interaction.Triggers>
-                      
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle1L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
-                      
+
                     </i:Interaction.Triggers>
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Status[0\,1]}" Name="Rectangle2L"  >
                     <i:Interaction.Triggers>
-                        
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle2L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
-                     
+
                     </i:Interaction.Triggers>
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[0\,2]}" Name="Rectangle3L"  >
                     <i:Interaction.Triggers>
-                       
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle3L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -68,7 +77,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[0\,3]}" Name="Rectangle4L">
                     <i:Interaction.Triggers>
-                       
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle4L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -76,7 +85,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[0\,4]}" Name="Rectangle5L">
                     <i:Interaction.Triggers>
-                      
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle5L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -84,7 +93,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[0\,5]}" Name="Rectangle6L" >
                     <i:Interaction.Triggers>
-                      
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle6L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -92,7 +101,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[0\,6]}" Name="Rectangle7L" >
                     <i:Interaction.Triggers>
-                       
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle7L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -100,7 +109,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[0\,7]}" Name="Rectangle8L" >
                     <i:Interaction.Triggers>
-                       
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle8L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -108,7 +117,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[0\,8]}" Name="Rectangle9L" >
                     <i:Interaction.Triggers>
-                       
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle9L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -116,7 +125,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[0\,9]}" Name="Rectangle10L">
                     <i:Interaction.Triggers>
-                       
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle10L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -125,7 +134,7 @@
 
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[1\,0]}" Name="Rectangle11L" >
                     <i:Interaction.Triggers>
-                        
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle11L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -133,7 +142,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[1\,1]}" Name="Rectangle12L">
                     <i:Interaction.Triggers>
-                       
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle12L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -141,7 +150,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[1\,2]}" Name="Rectangle13L" >
                     <i:Interaction.Triggers>
-                       
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle13L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -149,7 +158,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[1\,3]}" Name="Rectangle14L" >
                     <i:Interaction.Triggers>
-                       
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle14L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -157,7 +166,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[1\,4]}" Name="Rectangle15L" >
                     <i:Interaction.Triggers>
-                       
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle15L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -165,7 +174,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[1\,5]}" Name="Rectangle16L" >
                     <i:Interaction.Triggers>
-                        
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle16L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -173,7 +182,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[1\,6]}" Name="Rectangle17L">
                     <i:Interaction.Triggers>
-                       
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle17L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -181,7 +190,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[1\,7]}" Name="Rectangle18L" >
                     <i:Interaction.Triggers>
-                       
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle18L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -189,7 +198,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[1\,8]}" Name="Rectangle19L" >
                     <i:Interaction.Triggers>
-                       
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle19L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -197,7 +206,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[1\,9]}" Name="Rectangle20L" >
                     <i:Interaction.Triggers>
-                      
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle20L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -205,7 +214,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[2\,0]}" Name="Rectangle21L">
                     <i:Interaction.Triggers>
-                      
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle21L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -213,7 +222,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[2\,1]}" Name="Rectangle22L" >
                     <i:Interaction.Triggers>
-                       
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle22L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -221,7 +230,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[2\,2]}" Name="Rectangle23L" >
                     <i:Interaction.Triggers>
-                       
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle23L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -229,7 +238,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[2\,3]}" Name="Rectangle24L" >
                     <i:Interaction.Triggers>
-                       
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle24L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -237,7 +246,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[2\,4]}" Name="Rectangle25L" >
                     <i:Interaction.Triggers>
-                       
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle25L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -245,7 +254,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[2\,5]}" Name="Rectangle26L">
                     <i:Interaction.Triggers>
-                       
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle26L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -253,7 +262,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[2\,6]}" Name="Rectangle27L">
                     <i:Interaction.Triggers>
-                        
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle27L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -261,7 +270,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[2\,7]}" Name="Rectangle28L" >
                     <i:Interaction.Triggers>
-                     
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle28L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -269,7 +278,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[2\,8]}" Name="Rectangle29L" >
                     <i:Interaction.Triggers>
-                      
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle29L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -277,7 +286,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[2\,9]}" Name="Rectangle30L">
                     <i:Interaction.Triggers>
-                       
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle30L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -285,7 +294,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[3\,0]}" Name="Rectangle31L" >
                     <i:Interaction.Triggers>
-                       
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle31L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -293,7 +302,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[3\,1]}" Name="Rectangle32L">
                     <i:Interaction.Triggers>
-                       
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle32L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -301,7 +310,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[3\,2]}" Name="Rectangle33L" >
                     <i:Interaction.Triggers>
-                      
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle33L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -309,7 +318,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[3\,3]}" Name="Rectangle34L">
                     <i:Interaction.Triggers>
-                       
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle34L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -317,7 +326,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[3\,4]}" Name="Rectangle35L" >
                     <i:Interaction.Triggers>
-                       
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle35L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -325,7 +334,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[3\,5]}" Name="Rectangle36L" >
                     <i:Interaction.Triggers>
-                        
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle36L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -333,7 +342,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[3\,6]}" Name="Rectangle37L" >
                     <i:Interaction.Triggers>
-                       
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle37L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -341,15 +350,15 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[3\,7]}" Name="Rectangle38L" >
                     <i:Interaction.Triggers>
-                       
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle38L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </Rectangle>
-                <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[3\,8]}" Name="Rectangle39L" > 
+                <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[3\,8]}" Name="Rectangle39L" >
                     <i:Interaction.Triggers>
-                       
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle39L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -357,7 +366,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[3\,9]}" Name="Rectangle40L">
                     <i:Interaction.Triggers>
-                      
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle40L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -365,7 +374,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[4\,0]}" Name="Rectangle41L">
                     <i:Interaction.Triggers>
-                       
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle41L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -373,7 +382,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[4\,1]}" Name="Rectangle42L">
                     <i:Interaction.Triggers>
-                       
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle42L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -381,7 +390,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[4\,2]}" Name="Rectangle43L" >
                     <i:Interaction.Triggers>
-                       
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle43L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -389,7 +398,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[4\,3]}" Name="Rectangle44L">
                     <i:Interaction.Triggers>
-                       
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle44L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -397,7 +406,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[4\,4]}" Name="Rectangle45L" >
                     <i:Interaction.Triggers>
-                        
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle45L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -405,7 +414,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[4\,5]}" Name="Rectangle46L" >
                     <i:Interaction.Triggers>
-                        
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle46L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -413,7 +422,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[4\,6]}" Name="Rectangle47L" >
                     <i:Interaction.Triggers>
-                       
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle47L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -421,7 +430,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[4\,7]}" Name="Rectangle48L" >
                     <i:Interaction.Triggers>
-                      
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle48L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -429,7 +438,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[4\,8]}" Name="Rectangle49L" >
                     <i:Interaction.Triggers>
-                       
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle49L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -437,7 +446,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[4\,9]}" Name="Rectangle50L" >
                     <i:Interaction.Triggers>
-                       
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle50L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -445,7 +454,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[5\,0]}" Name="Rectangle51L">
                     <i:Interaction.Triggers>
-                      
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle51L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -453,7 +462,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[5\,1]}" Name="Rectangle52L">
                     <i:Interaction.Triggers>
-                      
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle52L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -461,7 +470,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[5\,2]}" Name="Rectangle53L" >
                     <i:Interaction.Triggers>
-                      
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle53L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -469,7 +478,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[5\,3]}" Name="Rectangle54L" >
                     <i:Interaction.Triggers>
-                       
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle54L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -477,7 +486,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[5\,4]}" Name="Rectangle55L" >
                     <i:Interaction.Triggers>
-                       
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle55L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -485,7 +494,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[5\,5]}" Name="Rectangle56L" >
                     <i:Interaction.Triggers>
-                      
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle56L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -493,7 +502,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[5\,6]}" Name="Rectangle57L">
                     <i:Interaction.Triggers>
-                      
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle57L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -501,7 +510,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[5\,7]}" Name="Rectangle58L">
                     <i:Interaction.Triggers>
-                        
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle58L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -509,7 +518,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[5\,8]}" Name="Rectangle59L">
                     <i:Interaction.Triggers>
-                       
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle59L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -517,7 +526,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[5\,9]}" Name="Rectangle60L" >
                     <i:Interaction.Triggers>
-                        
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle60L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -525,7 +534,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[6\,0]}" Name="Rectangle61L" >
                     <i:Interaction.Triggers>
-                      
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle61L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -533,7 +542,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[6\,1]}" Name="Rectangle62L">
                     <i:Interaction.Triggers>
-                      
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle62L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -541,7 +550,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[6\,2]}" Name="Rectangle63L">
                     <i:Interaction.Triggers>
-                       
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle63L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -549,7 +558,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[6\,3]}" Name="Rectangle64L" >
                     <i:Interaction.Triggers>
-                       
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle64L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -557,7 +566,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[6\,4]}" Name="Rectangle65L" >
                     <i:Interaction.Triggers>
-                       
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle65L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -565,7 +574,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[6\,5]}" Name="Rectangle66L" >
                     <i:Interaction.Triggers>
-                       
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle66L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -573,7 +582,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[6\,6]}" Name="Rectangle67L">
                     <i:Interaction.Triggers>
-                       
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle67L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -581,7 +590,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[6\,7]}" Name="Rectangle68L" >
                     <i:Interaction.Triggers>
-                       
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle68L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -589,7 +598,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[6\,8]}" Name="Rectangle69L" >
                     <i:Interaction.Triggers>
-                       
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle69L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -597,7 +606,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[6\,9]}" Name="Rectangle70L" >
                     <i:Interaction.Triggers>
-                       
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle70L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -605,7 +614,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[7\,0]}" Name="Rectangle71L" >
                     <i:Interaction.Triggers>
-                      
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle71L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -613,7 +622,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[7\,1]}" Name="Rectangle72L" >
                     <i:Interaction.Triggers>
-                       
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle72L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -621,7 +630,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[7\,2]}" Name="Rectangle73L" >
                     <i:Interaction.Triggers>
-                      
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle73L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -629,7 +638,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[7\,3]}" Name="Rectangle74L">
                     <i:Interaction.Triggers>
-                       
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle74L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -637,7 +646,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[7\,4]}" Name="Rectangle75L">
                     <i:Interaction.Triggers>
-                       
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle75L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -645,7 +654,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[7\,5]}" Name="Rectangle76L" >
                     <i:Interaction.Triggers>
-                       
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle76L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -653,7 +662,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[7\,6]}" Name="Rectangle77L" >
                     <i:Interaction.Triggers>
-                        
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle77L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -661,7 +670,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[7\,7]}" Name="Rectangle78L">
                     <i:Interaction.Triggers>
-                       
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle78L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -669,7 +678,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[7\,8]}" Name="Rectangle79L">
                     <i:Interaction.Triggers>
-                       
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle79L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -677,7 +686,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[7\,9]}" Name="Rectangle80L" >
                     <i:Interaction.Triggers>
-                        
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle80L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -685,7 +694,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[8\,0]}" Name="Rectangle81L" >
                     <i:Interaction.Triggers>
-                      
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle81L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -693,7 +702,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[8\,1]}" Name="Rectangle82L" >
                     <i:Interaction.Triggers>
-                       
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle82L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -701,15 +710,15 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[8\,2]}" Name="Rectangle83L" >
                     <i:Interaction.Triggers>
-                       
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle83L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </Rectangle>
-                <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[8\,3]}" Name="Rectangle84L" > 
+                <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[8\,3]}" Name="Rectangle84L" >
                     <i:Interaction.Triggers>
-                        
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle84L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -717,7 +726,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[8\,4]}" Name="Rectangle85L" >
                     <i:Interaction.Triggers>
-                       
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle85L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -725,7 +734,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[8\,5]}" Name="Rectangle86L" >
                     <i:Interaction.Triggers>
-                       
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle86L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -733,7 +742,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[8\,6]}" Name="Rectangle87L" >
                     <i:Interaction.Triggers>
-                      
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle87L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -741,7 +750,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[8\,7]}" Name="Rectangle88L" >
                     <i:Interaction.Triggers>
-                       
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle88L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -749,7 +758,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[8\,8]}" Name="Rectangle89L" >
                     <i:Interaction.Triggers>
-                      
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle89L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -757,7 +766,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[8\,9]}" Name="Rectangle90L" >
                     <i:Interaction.Triggers>
-                       
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle90L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -765,7 +774,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[9\,0]}" Name="Rectangle91L">
                     <i:Interaction.Triggers>
-                       
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle91L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -773,7 +782,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[9\,1]}" Name="Rectangle92L" >
                     <i:Interaction.Triggers>
-                       
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle92L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -781,7 +790,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[9\,2]}" Name="Rectangle93L" >
                     <i:Interaction.Triggers>
-                        
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle93L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -789,7 +798,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[9\,3]}" Name="Rectangle94L" >
                     <i:Interaction.Triggers>
-                       
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle94L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -797,7 +806,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[9\,4]}" Name="Rectangle95L">
                     <i:Interaction.Triggers>
-                       
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle95L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -805,7 +814,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[9\,5]}" Name="Rectangle96L" >
                     <i:Interaction.Triggers>
-                      
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle96L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -813,7 +822,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[9\,6]}" Name="Rectangle97L" >
                     <i:Interaction.Triggers>
-                       
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle97L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -821,7 +830,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[9\,7]}" Name="Rectangle98L" >
                     <i:Interaction.Triggers>
-                       
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle98L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -829,7 +838,7 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=Status[9\,8]}" Name="Rectangle99L">
                     <i:Interaction.Triggers>
-                       
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle99L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
@@ -837,19 +846,21 @@
                 </Rectangle>
                 <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Status[9\,9]}" Name="Rectangle100L" >
                     <i:Interaction.Triggers>
-                       
+
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=Rectangle100L }"></i:InvokeCommandAction>
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </Rectangle>
             </UniformGrid>
-            <TextBlock Name="BlockBotStatistics" FontStyle="Italic" FontFamily="Harrington" Margin="490,70,0,0" >
-                <TextBlock Name="BlockNameBot" Text="Bot field" Width="190" Height="30" TextAlignment="Right" FontSize="20"/>
+            <TextBlock Name="BlockBotStatistics" FontStyle="Italic" FontFamily="Harrington" Margin="480,70,0,0"  >
+                <TextBlock Name="BlockNameBot" Text="{Binding Source={StaticResource Helper}, Path=[MainWindowRes.BotField_Lbl]}" FontStyle="Italic" FontFamily="Monotype Corsiva" Width="190" Height="30" TextAlignment="Right" FontSize="24"/>
                 <LineBreak></LineBreak>
-                <TextBlock Name="BlockShotBot" Text="{Binding Path=ShotAmountRight}" Padding="20,0,50,0" FontSize="18"/>
-                <TextBlock Name="BlockShipBot" Text="{Binding Path=ShipAmountRight}" FontSize="18"/>  
-            </TextBlock>
+                <TextBlock Name="BlockShotBot" Text="{Binding Source={StaticResource Helper}, Path=[MainWindowRes.ShotAmount_Lbl]}" Padding="20,0,0,0" FontSize="20" FontStyle="Italic" FontFamily="Monotype Corsiva"/>
+                <Label Name="LabelShot" Content="{Binding Path=ShotAmountRight}" FontSize="18" Padding="0,-15,0,9" FontStyle="Italic" FontFamily="Monotype Corsiva" Height="15" Width="40"/>
+                <TextBlock Name="BlockShipBot" Text="{Binding Source={StaticResource Helper}, Path=[MainWindowRes.ShipAmount_Lbl]}" Padding="10,0,0,0" FontSize="20" FontStyle="Italic" FontFamily="Monotype Corsiva"/>  
+                <Label Name="LabelShip" Content="{Binding Path=ShipAmountRight}" FontSize="18" Padding="0,-15,0,0" FontStyle="Italic" FontFamily="Monotype Corsiva" Height="15" Width="40"/>
+                </TextBlock>
             <UniformGrid  Name="UniformGridRightField"  Width="330" Height="330" Background="Gray" HorizontalAlignment="Right" Margin="480,130,0,0" Columns="10" Rows="10" >
                 <Rectangle Fill="Azure" Margin="0,1,1,0" Name="Rectangle1" RadiusX="{Binding Path=StatusRightArray[0\,0]}" IsEnabled="{Binding IsEnabled}" >
                     <i:Interaction.Triggers>
@@ -1044,7 +1055,7 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </Rectangle>
-                <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=StatusRightArray[2\,7]}" Name="Rectangle28" IsEnabled="{Binding IsEnabled}"> 
+                <Rectangle Fill="Azure" Margin="0,1,1,0" RadiusX="{Binding Path=StatusRightArray[2\,7]}" Name="Rectangle28" IsEnabled="{Binding IsEnabled}">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="MouseDown">
                             <i:InvokeCommandAction Command="{Binding Path=MouseDownCommand}" CommandParameter="{Binding ElementName=Rectangle28 }"/>
@@ -1555,18 +1566,19 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </Rectangle>
-                
+
             </UniformGrid>
+
         </Canvas>
         <Canvas Name="CanvasButtons" >
             <Button Content="Ok" Command="{Binding Path=OkCommand}" Name="ButtonOk"  Margin="395,300,0,0" Padding="15,5,15,5" Background="SteelBlue" Foreground="Azure" Visibility="{Binding Path=IsEndButton, Converter={StaticResource BooleanToVisibility}}"/>
-            <Button Content="Generate fleet" Command="{Binding Path=GenerateFleetCommand}" CommandParameter="{Binding ElementName=UniformGridLeftField}" Name="ButtonGenerateFleet"  Margin="150,470,0,0" Padding="15,5,15,5" Background="SteelBlue" Foreground="Azure" Visibility="{Binding Path=IsButtonsStartVisible, Converter={StaticResource BooleanToVisibility}}"/>
-            <Button Name="ButtonStart" Command="{Binding Path=StartCommand }" CommandParameter="{Binding ElementName=SeaBattle}"  Content="Start" Margin="650,470,0,0" Padding="15,5,15,5" Background="SteelBlue" Foreground="Azure"  Visibility="{Binding Path= IsButtonsStartVisible, Converter={StaticResource BooleanToVisibility}}" />
+            <Button Content="{Binding Source={StaticResource Helper}, Path=[MainWindowRes.GenerateFleet_Btn]}" Command="{Binding Path=GenerateFleetCommand}" CommandParameter="{Binding ElementName=UniformGridLeftField}" Name="ButtonGenerateFleet"  Margin="150,470,0,0" Padding="15,5,15,5" Background="SteelBlue" Foreground="Azure" Visibility="{Binding Path=IsButtonsStartVisible, Converter={StaticResource BooleanToVisibility}}"/>
+            <Button Name="ButtonStart" Command="{Binding Path=StartCommand }" CommandParameter="{Binding ElementName=SeaBattle}"  Content="{Binding Source={StaticResource Helper}, Path=[MainWindowRes.Start_Btn]}" Margin="650,470,0,0" Padding="15,5,15,5" Background="SteelBlue" Foreground="Azure"  Visibility="{Binding Path= IsButtonsStartVisible, Converter={StaticResource BooleanToVisibility}}" />
 
 
         </Canvas>
 
-        <StackPanel Height="530" Margin="0,0,-0.4,0.4" VerticalAlignment="Bottom"/>
+        <StackPanel Height="530" Margin="15,0,-15.4,0.4" VerticalAlignment="Bottom"/>
 
     </Grid>
 

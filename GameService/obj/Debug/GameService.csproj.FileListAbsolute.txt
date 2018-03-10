@@ -5,3 +5,6 @@ C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\GameService\b
 C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\GameService\obj\Debug\GameService.csprojResolveAssemblyReference.cache
 C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\GameService\obj\Debug\GameService.dll
 C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\GameService\obj\Debug\GameService.pdb
+C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\GameService\bin\Debug\NLog.config
+C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\GameService\bin\Debug\NLog.dll
+C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\GameService\bin\Debug\NLog.xml

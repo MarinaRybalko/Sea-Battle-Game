@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.ComponentModel;
+using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -9,7 +10,9 @@ using System.Windows.Media;
 using GameCore;
 using GameDataLayer;
 using GameService;
+using LocalizatorHelper;
 using SeaBattleMVVM.Annotations;
+using SeaBattleMVVM.Properties;
 using Brushes = System.Windows.Media.Brushes;
 using MessageBox = System.Windows.MessageBox;
 using Point = System.Windows.Point;
@@ -17,24 +20,26 @@ using Rectangle = System.Windows.Shapes.Rectangle;
 
 namespace SeaBattleMVVM.ViewModel
 {
-    public class MainWindowViewModel:DependencyObject, INotifyPropertyChanged
+    public class MainWindowViewModel : DependencyObject, INotifyPropertyChanged
     {
 
         private readonly Model.Model _model;
         private readonly Random _random = new Random();
-        private string _shipAmountLeft = "Ship amount: 10 ";
-        private string _shotAmountLeft = "Shot amount: 100 ";
-        private string _shipAmountRight = "Ship amount: 10 ";
-        private string _shotAmountRight = "Shot amount: 100 ";
+        private int _shipAmountLeft;
+        private int _shotAmountLeft;
+        private int _shipAmountRight;
+        private int _shotAmountRight;
         private bool _isRightField;
         private bool _isButtonsStartVisible = true;
         private bool _isGameModeNormal = true;
         private bool _isPlaying;
         private bool _isEndButton;
         private bool _isEnabled;
+        private bool _isRussian;
 
-
-
+        /// <summary>
+        /// Returns or sets a value indicating whether this element is enabled in the user interface
+        /// </summary>
         public bool IsEnabled
         {
             get { return _isEnabled; }
@@ -44,6 +49,9 @@ namespace SeaBattleMVVM.ViewModel
                 OnPropertyChanged("IsEnabled");
             }
         }
+        /// <summary>
+        /// Returns or sets visibility for ok button
+        /// </summary>
         public bool IsEndButton
         {
             get { return _isEndButton; }
@@ -53,6 +61,9 @@ namespace SeaBattleMVVM.ViewModel
                 OnPropertyChanged("IsEndButton");
             }
         }
+        /// <summary>
+        /// Returns or sets visibility for start and generate fleet buttons 
+        /// </summary>
         public bool IsButtonsStartVisible
         {
             get { return _isButtonsStartVisible; }
@@ -62,15 +73,43 @@ namespace SeaBattleMVVM.ViewModel
                 OnPropertyChanged("IsButtonsStartVisible");
             }
         }
+        /// <summary>
+        /// Occurs when game is started
+        /// </summary>
         public event EventHandler BeginGameEvent;
+        /// <summary>
+        /// Occurs when a property is changed on a component
+        /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
+        /// <summary>
+        /// Returns or sets player name
+        /// </summary>
         public string Name = "";
+        /// <summary>
+        /// Returns or sets array of left field cells 
+        /// </summary>
         public BindingArray Status { get; set; } = new BindingArray();
+        /// <summary>
+        /// Returns or sets right of left field cells 
+        /// </summary>
         public BindingArray StatusRightArray { get; set; } = new BindingArray();
+        /// <summary>
+        /// Returns or sets left field display 
+        /// </summary>
         public UniformGrid Grid { get; set; }
+        /// <summary>
+        /// Returns or sets right field display 
+        /// </summary>
         public UniformGrid GridR { get; set; }
+        /// <summary>
+        /// Returns or sets top players collection
+        /// </summary>
         public IEnumerable TopPlayersCollection { get; set; }
-        public bool IsGameModeNormal {
+        /// <summary>
+        /// Returns or sets a value indicating whether this game mode is normal
+        /// </summary>
+        public bool IsGameModeNormal
+        {
             get { return _isGameModeNormal; }
             set
             {
@@ -78,22 +117,34 @@ namespace SeaBattleMVVM.ViewModel
                 OnPropertyChanged("IsGameModeNormal");
             }
         }
-        public string ShipAmountLeft {
+        /// <summary>
+        ///  Returns or sets a value indicating ship amount of left field
+        /// </summary>
+        public int ShipAmountLeft
+        {
             get { return _shipAmountLeft; }
             set
             {
                 _shipAmountLeft = value;
                 OnPropertyChanged("ShipAmountLeft");
-            } }
-        public string ShotAmountLeft
+            }
+        }
+        /// <summary>
+        ///  Returns or sets a value indicating shot amount for left player
+        /// </summary>
+        public int ShotAmountLeft
         {
-            get { return _shotAmountLeft;}
-            set {
+            get { return _shotAmountLeft; }
+            set
+            {
                 _shotAmountLeft = value;
                 OnPropertyChanged("ShotAmountLeft");
             }
-        } 
-        public string ShipAmountRight
+        }
+        /// <summary>
+        ///  Returns or sets a value indicating ship amount of right field
+        /// </summary>
+        public int ShipAmountRight
         {
             get { return _shipAmountRight; }
             set
@@ -102,7 +153,11 @@ namespace SeaBattleMVVM.ViewModel
                 OnPropertyChanged("ShipAmountRight");
             }
         }
-        public string ShotAmountRight {
+        /// <summary>
+        ///  Returns or sets a value indicating shot amount for right player
+        /// </summary>
+        public int ShotAmountRight
+        {
             get { return _shotAmountRight; }
             set
             {
@@ -110,17 +165,53 @@ namespace SeaBattleMVVM.ViewModel
                 OnPropertyChanged("ShotAmountRight");
             }
         }
-    
+        /// <summary>
+        /// Returns or sets a command that generate fleet for left field
+        /// </summary>
         public ICommand GenerateFleetCommand { get; set; }
+        /// <summary>
+        /// Returns or sets a command that indicating game start
+        /// </summary>
         public ICommand StartCommand { get; set; }
+        /// <summary>
+        /// Returns or sets a command that indicating game end
+        /// </summary>
         public ICommand OkCommand { get; set; }
+        /// <summary>
+        /// Returns or sets a command that provides information about game
+        /// </summary>
         public ICommand InformationCommand { get; set; }
+        /// <summary>
+        /// Returns or sets a command that end game and close application
+        /// </summary>
         public ICommand ExitCommand { get; set; }
+        /// <summary>
+        /// Returns or sets a command that processes MouseDown event
+        /// </summary>
         public ICommand MouseDownCommand { get; set; }
+        /// <summary>
+        /// Returns or sets a command that updates grid cells
+        /// </summary>
         public ICommand UpdateCommand { get; set; }
+        /// <summary>
+        /// Returns or sets a command that  gets top ten best players
+        /// </summary>
         public ICommand TopPlayersCommand { get; set; }
+        /// <summary>
+        /// Returns or sets a command that opens greeting window
+        /// </summary>
         public ICommand GreetingCommand { get; set; }
-
+        /// <summary>
+        /// Returns or sets command for change language to russian
+        /// </summary>
+        public ICommand RussianCommand { get; set; }
+        /// <summary>
+        /// Returns or sets command for change language to english
+        /// </summary>
+        public ICommand EnglishCommand { get; set; }
+        /// <summary>
+        /// Initialize a new instance of the <see cref="MainWindowViewModel"/> class
+        /// </summary>
         public MainWindowViewModel()
         {
 
@@ -135,6 +226,14 @@ namespace SeaBattleMVVM.ViewModel
             GreetingCommand = new DelegateCommand(Greeting);
             MouseDownCommand = new DelegateCommand(OnMouseDown);
             UpdateCommand = new DelegateCommand(Update);
+            RussianCommand= new DelegateCommand(Russian);
+            EnglishCommand= new DelegateCommand(English);
+            ShipAmountLeft = Field.ShipsCount;
+            ShipAmountRight = Field.ShipsCount;
+            ShotAmountLeft = Field.Size * Field.Size;
+            ShotAmountRight = Field.Size * Field.Size;
+            ResourceManagerService.RegisterManager("MainWindowRes", MainWindowRes.ResourceManager, true);
+
             BeforeGame();
             TopPlayersCollection = _model.Players.GetTopTen();
             _model.Game.RandomArrangement(_model.Game.LeftField);
@@ -143,6 +242,17 @@ namespace SeaBattleMVVM.ViewModel
 
         }
 
+        private void Russian(object obj)
+        {
+            _isRussian = true;
+            ResourceManagerService.ChangeLocale("ru-RU");
+ 
+        }
+        private void English(object obj)
+        {
+            _isRussian = false;
+            ResourceManagerService.ChangeLocale("en-US");
+        }
 
         private void GenerateFleet(object obj)
         {
@@ -210,9 +320,11 @@ namespace SeaBattleMVVM.ViewModel
                 value.CellStatus = CellStatus.Empty;
             _model.Game.RandomArrangement(_model.Game.RightField);
         }
-        private static void Information(object obj)
+        private  void Information(object obj)
         {
-            MessageBox.Show(@"Sea Battle " + Environment.NewLine + @"Version 1.0.0" + Environment.NewLine + @"Developer: Marina Rybalko");
+            var str = ResourceManagerService.GetResourceString("MainWindowRes", "Inform_message");
+            MessageBox.Show(str.Replace(@"{\n}", Environment.NewLine));
+
         }
         private static void Exit(object obj)
         {
@@ -221,6 +333,7 @@ namespace SeaBattleMVVM.ViewModel
         }
         private void OnMouseDown(object sender)
         {
+
             _isPlaying = true;
             var rect = sender as Rectangle;
             if (rect != null && Convert.ToInt32(rect.RadiusX) == 0)
@@ -279,9 +392,10 @@ namespace SeaBattleMVVM.ViewModel
 
 
         }
+        
         private void TopPlayersView(object obj)
         {
-          WindowPresenter.Show(1, TopPlayersCollection,ref Name);
+            WindowPresenter.Show(1, TopPlayersCollection, ref Name);
         }
         private void Greeting(object obj)
         {
@@ -291,6 +405,7 @@ namespace SeaBattleMVVM.ViewModel
         private static void DrawDrownedCell([NotNull] Rectangle rectangle)
         {
             if (rectangle == null) throw new ArgumentNullException(nameof(rectangle));
+      
             var backgroundSquare =
 
                 new GeometryDrawing(
@@ -302,7 +417,7 @@ namespace SeaBattleMVVM.ViewModel
                     new RectangleGeometry(new Rect(0, 0, 33, 33)));
             var gGroup = new GeometryGroup();
 
-            gGroup.Children.Add(new LineGeometry(new Point(0, 0), new Point(33,33)));
+            gGroup.Children.Add(new LineGeometry(new Point(0, 0), new Point(33, 33)));
             gGroup.Children.Add(new LineGeometry(new Point(0, 33), new Point(33, 0)));
             var checkers = new GeometryDrawing(new SolidColorBrush(Colors.Black), new Pen(Brushes.Black, 2), gGroup);
 
@@ -311,7 +426,7 @@ namespace SeaBattleMVVM.ViewModel
             checkersDrawingGroup.Children.Add(backgroundSquare);
             checkersDrawingGroup.Children.Add(checkers);
 
-            var drawingBrush = new DrawingBrush {Drawing = checkersDrawingGroup};
+            var drawingBrush = new DrawingBrush { Drawing = checkersDrawingGroup };
 
             rectangle.Fill = drawingBrush;
         }
@@ -338,7 +453,7 @@ namespace SeaBattleMVVM.ViewModel
             checkersDrawingGroup.Children.Add(backgroundSquare);
             checkersDrawingGroup.Children.Add(checkers);
 
-            var drawingBrush = new DrawingBrush {Drawing = checkersDrawingGroup};
+            var drawingBrush = new DrawingBrush { Drawing = checkersDrawingGroup };
 
             rectangle.Fill = drawingBrush;
         }
@@ -365,7 +480,7 @@ namespace SeaBattleMVVM.ViewModel
             checkersDrawingGroup.Children.Add(backgroundSquare);
             checkersDrawingGroup.Children.Add(checkers);
 
-            var drawingBrush = new DrawingBrush {Drawing = checkersDrawingGroup};
+            var drawingBrush = new DrawingBrush { Drawing = checkersDrawingGroup };
 
             rect.Fill = drawingBrush;
         }
@@ -434,10 +549,10 @@ namespace SeaBattleMVVM.ViewModel
             }
         }
 
-        public void OnPropertyChanged(string propname )
+        private void OnPropertyChanged(string propname)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propname));
-            
+
         }
 
         private void BeforeGame()
@@ -461,7 +576,7 @@ namespace SeaBattleMVVM.ViewModel
             }
             _model.Game.LeftPlayer.OponentChanged += Oponent_Changed;
 
-            _model.Game.BeginGameMethod();
+            _model.Game.OnTransferMoveSubscribe();
 
             _model.Game.Init();
             SubscriptionOponentField();
@@ -482,18 +597,22 @@ namespace SeaBattleMVVM.ViewModel
             {
                 UpdateCommand.Execute(child);
             }
+
             MessageBox.Show(_model.Game.CountWin != 0
-                ? @"Congratulations! You are winner!"
-                : @"Sorry, you are loser >_<");
+                ? ResourceManagerService.GetResourceString("MainWindowRes", "Winner_message")
+                : ResourceManagerService.GetResourceString("MainWindowRes", "Loser_message"));
+           
+            
 
             IsEndButton = true;
             _model.Game.ResetStatistics(_model.Game.RightStatistics);
             _model.Game.ResetStatistics(_model.Game.LeftStatistics);
 
-            ShipAmountLeft = @"Ship amount: " + _model.Game.RightStatistics.CountShips;
-            ShotAmountLeft = @"Shot amount: " + _model.Game.RightStatistics.CountLeftShot;
-            ShipAmountRight = @"Ship amount: " + _model.Game.LeftStatistics.CountShips;
-            ShotAmountRight = @"Shot amount: " + _model.Game.LeftStatistics.CountLeftShot;
+            ShipAmountLeft = _model.Game.RightStatistics.CountShips;
+            ShotAmountLeft = _model.Game.RightStatistics.CountLeftShot;
+            ShipAmountRight = _model.Game.LeftStatistics.CountShips;
+            ShotAmountRight = _model.Game.LeftStatistics.CountLeftShot;
+
             ResetRightField();
             foreach (var child in GridR.Children)
             {
@@ -533,8 +652,8 @@ namespace SeaBattleMVVM.ViewModel
             }
             else
             {
-                if(Name=="")return;
-                
+                if (Name == "") return;
+
                 var player = new BattlePlayer
                 {
                     Name = Name,
@@ -572,10 +691,10 @@ namespace SeaBattleMVVM.ViewModel
             }
 
 
-            ShipAmountLeft = @"Ship amount: " + _model.Game.RightStatistics.CountShips;
-            ShotAmountLeft = @"Shot amount: " + _model.Game.RightStatistics.CountLeftShot;
-            ShipAmountRight = @"Ship amount: " + _model.Game.LeftStatistics.CountShips;
-            ShotAmountRight = @"Shot amount: " + _model.Game.LeftStatistics.CountLeftShot;
+            ShipAmountLeft = _model.Game.RightStatistics.CountShips;
+            ShotAmountLeft = _model.Game.RightStatistics.CountLeftShot;
+            ShipAmountRight = _model.Game.LeftStatistics.CountShips;
+            ShotAmountRight = _model.Game.LeftStatistics.CountLeftShot;
 
             _isRightField = true;
             SetRightFieldCells();
@@ -602,11 +721,11 @@ namespace SeaBattleMVVM.ViewModel
 
                 return _model.Game.LeftPlayer.OponentField.Shot(_model.Game.RightField.CellField[0, index]);
             }
-                var x = index / 10;
-                var y = index % 10;
-                return _model.Game.LeftPlayer.OponentField.Shot(_model.Game.RightField.CellField[x, y]);
+            var x = index / 10;
+            var y = index % 10;
+            return _model.Game.LeftPlayer.OponentField.Shot(_model.Game.RightField.CellField[x, y]);
 
         }
-       
+
     }
 }

@@ -7,13 +7,15 @@ namespace SeaBattleGame
     public partial class GreetingForm : Form
     {
        
-       
+        /// <summary>
+        /// Initialize a new instance of the <see cref="GreetingForm"/> class
+        /// </summary>
         public GreetingForm()
         {
             InitializeComponent();
         }
       
-        public void button1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
             const string pattern = @"^[a-z]|[а-я]+$";
             if(Regex.IsMatch(textBox1.Text, pattern, RegexOptions.IgnoreCase))
@@ -27,7 +29,7 @@ namespace SeaBattleGame
                 Show();
             }
         }
-        public void GreetingForm_FormClosing(object sender, FormClosingEventArgs e)
+        private void GreetingForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             const string pattern = @"^[a-z]|[а-я]+$";
 

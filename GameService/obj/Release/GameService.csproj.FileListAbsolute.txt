@@ -1,0 +1,10 @@
+C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\GameService\bin\Release\NLog.config
+C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\GameService\bin\Release\GameService.dll
+C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\GameService\bin\Release\GameService.pdb
+C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\GameService\bin\Release\GameCore.dll
+C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\GameService\bin\Release\NLog.dll
+C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\GameService\bin\Release\GameCore.pdb
+C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\GameService\bin\Release\NLog.xml
+C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\GameService\obj\Release\GameService.csprojResolveAssemblyReference.cache
+C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\GameService\obj\Release\GameService.dll
+C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\GameService\obj\Release\GameService.pdb

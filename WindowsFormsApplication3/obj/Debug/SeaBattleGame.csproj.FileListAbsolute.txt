@@ -58,3 +58,6 @@ C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\WindowsFormsA
 C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\WindowsFormsApplication3\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\WindowsFormsApplication3\bin\Debug\GameDataLayer.dll
 C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\WindowsFormsApplication3\bin\Debug\GameDataLayer.pdb
+C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\WindowsFormsApplication3\bin\Debug\NLog.config
+C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\WindowsFormsApplication3\bin\Debug\NLog.dll
+C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\WindowsFormsApplication3\bin\Debug\NLog.xml

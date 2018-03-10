@@ -3,11 +3,17 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:localizatorHelper="clr-namespace:LocalizatorHelper;assembly=LocalizatorHelper"
         mc:Ignorable="d" d:DesignWidth="293.442" d:DesignHeight="322.479"
     Title="RatingWindow" Height="400" Width="300" Icon="pack://siteoforigin:,,,/Resources/MainIcon.ico">
+    <Window.Resources>
+        <localizatorHelper:LocalisationHelper x:Key="Helper"></localizatorHelper:LocalisationHelper>
+    </Window.Resources>
     <Grid Background="LightSkyBlue">
-        <DataGrid x:Name="DataGrid" HorizontalAlignment="Left" Margin="24,44,0,10.4" Width="242" RenderTransformOrigin="0.495,0.423" />
-        <Label x:Name="Label" Content="Top players" FontFamily="Edwardian Script ITC" FontSize="30" HorizontalAlignment="Left" Margin="101,-1,0,0" VerticalAlignment="Top"/>
+        <DataGrid x:Name="DataGrid" HorizontalAlignment="Left" Margin="24,44,0,10.4" Width="242" RenderTransformOrigin="0.495,0.423" AutoGenerateColumns="False" >
+        
+        </DataGrid>
+        <Label x:Name="Label" Content="{Binding [MainWindowRes.TopPlayers_Btn], Source={StaticResource Helper} }" FontFamily="Monotype Corsiva" FontSize="30" HorizontalAlignment="Left" Margin="101,-1,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

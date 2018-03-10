@@ -14,13 +14,25 @@ namespace SeaBattleGame
     public partial class Form1 : Form
     {
         private static readonly Random Random = new Random(DateTime.Now.Millisecond);
+        
         private RatingForm _ratingForm;
         private readonly GameController _controller;       
         private readonly ViewCell _view = new ViewCell();
+        /// <summary>
+        /// Occurs when game is started
+        /// </summary>
         public event EventHandler BeginGameEvent;
+        /// <summary>
+        /// Returns or sets players repository
+        /// </summary>
         public readonly IRepository<BattlePlayer> Players;
+        /// <summary>
+        /// Returns or sets player name
+        /// </summary>
         public static string PlayerName { get; set; }
-      
+        /// <summary>
+        /// Initialize a new instance of the <see cref="Form1"/> class
+        /// </summary>
         public Form1()
         {
             InitializeComponent();
@@ -45,6 +57,7 @@ namespace SeaBattleGame
  
         private void FillTable(TableLayoutPanel table, Cell[,] pictBox)
         {
+           
             int sizeCell = table.Width / table.ColumnCount;
 
             for (var i = 0; i < Field.Size; i++)
@@ -117,7 +130,7 @@ namespace SeaBattleGame
             button2.Visible = false;
             _controller.LeftPlayer.OponentChanged += Oponent_Changed;
 
-            _controller.BeginGameMethod();
+            _controller.OnTransferMoveSubscribe();
 
             _controller.Init();
             SubscriptionOponentField();

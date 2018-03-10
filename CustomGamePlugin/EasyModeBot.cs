@@ -12,11 +12,19 @@ namespace CustomGamePlugin
         private int _cordinateJ;
         private CellStatus _shotState;
         private readonly bool[,] _checkShot = new bool[Field.Size, Field.Size];
+        /// <inheritdoc />
+        /// <summary>
+        /// Initialize new instance of the <see cref="T:CustomGamePlugin.EasyModeBot" /> class
+        /// </summary>
+        /// <param name="field"></param>
         public EasyModeBot(Field field) : base(field)
         {
             _shotState = CellStatus.Miss;
             GeneralFunction.FalseToMatrix(_checkShot);
         }
+        /// <summary>
+        /// Make a move
+        /// </summary>
         public override void Move()
         {
             

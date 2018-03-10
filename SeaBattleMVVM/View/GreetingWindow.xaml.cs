@@ -23,5 +23,6 @@ namespace SeaBattleMVVM
         {
             InitializeComponent();
         }
+        
     }
 }

@@ -5,18 +5,33 @@ namespace GameCore
 {
    public class Field
    {
+        /// <summary>
+        /// Returns or sets field size
+        /// </summary>
         public static int Size { get; } = 10;
-       
+        /// <summary>
+        /// Returns or sets field cells
+        /// </summary>
         public Cell [,] CellField { get; set; }
-
+        /// <summary>
+        /// Returns or sets matrix that describes presence or absence of a ship in a cell
+        /// </summary>
         public bool[,] MatrixShips { get; set; }
-
+        /// <summary>
+        /// Occurs if the player makes a shot
+        /// </summary>
         public event EventHandler MadeShot;
-
-       public static int ShipsCount { get; } = (int)ShipType.FourdeckShips + (int)ShipType.ThreedeckShips + (int)ShipType.TwodeckShips + (int)ShipType.OnedeckShips;
-
+        /// <summary>
+        /// Returns or sets amount of ships
+        /// </summary>
+        public static int ShipsCount { get; } = (int)ShipType.FourdeckShips + (int)ShipType.ThreedeckShips + (int)ShipType.TwodeckShips + (int)ShipType.OnedeckShips;
+        /// <summary>
+        /// Returns or sets ship arrangement on the field
+        /// </summary>
         public RandomField RandomShips { get; set; }
-
+        /// <summary>
+        /// Initialize a new instance of the <see cref="Field"/> by default
+        /// </summary>
         public Field()
         {
             MatrixShips = new bool[Size, Size];
@@ -35,7 +50,9 @@ namespace GameCore
 
         }
 
-   
+        /// <summary>
+        /// Marks completion cells on field
+        /// </summary>
         public void DisplayCompletionCell()
         {
             for (var i = 0; i < Size; i++)
@@ -135,7 +152,11 @@ namespace GameCore
             }
         }
 
-
+        /// <summary>
+        /// Performs and checks players shot
+        /// </summary>
+        /// <param name="cellShot"></param>
+        /// <returns></returns>
         public CellStatus Shot(Cell cellShot)
         {
         

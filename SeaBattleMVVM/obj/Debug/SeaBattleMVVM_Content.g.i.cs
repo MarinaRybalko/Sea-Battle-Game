@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("properties/playersdb_log.ldf")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("nlog.config")]
 
 

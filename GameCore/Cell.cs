@@ -6,17 +6,32 @@ namespace GameCore
     public class Cell:PictureBox
 
     {
-
-    public Location CellLocation { get; set; }
-    public Ship ShipIntoCell { get; set; }
-    public CellStatus CellStatus { get; set; }
-
-    public Cell(int x, int y)
+        /// <summary>
+        /// Returns or sets cell location on field
+        /// </summary>
+        public Location CellLocation { get; set; }
+        /// <summary>
+        /// Returns or sets ship that belong current cell
+        /// </summary>
+        public Ship ShipIntoCell { get; set; }
+        /// <summary>
+        /// Returns or sets cell status that describes shot result
+        /// </summary>
+        public CellStatus CellStatus { get; set; }
+        /// <summary>
+        /// Initialize a new instance of the <see cref="Cell"/> class
+        /// </summary>
+        /// <param name="x">Coordinate X</param>
+        /// <param name="y">Coordinate Y</param>
+        public Cell(int x, int y)
     {
         CellLocation = new Location(x, y);
     }
-
-    public Cell()
+        /// <inheritdoc  />
+        /// <summary>
+        /// Initialize a new instance of the <see cref="Cell"/> classby default
+        /// </summary>
+        public Cell()
     {
 
     }
