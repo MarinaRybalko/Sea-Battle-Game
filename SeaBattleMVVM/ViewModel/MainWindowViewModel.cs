@@ -236,7 +236,6 @@ namespace SeaBattleMVVM.ViewModel
         /// </summary>
         public ICommand EnglishCommand { get; set; }
 
-        public  ICommand GenerateLeftFieldCommand { get; set; }
         /// <summary>
         /// Initialize a new instance of the <see cref="MainWindowViewModel"/> class
         /// </summary>
