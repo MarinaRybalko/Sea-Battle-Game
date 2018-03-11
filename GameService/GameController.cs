@@ -8,7 +8,7 @@ namespace GameService
 
      public class GameController
      {
-        private readonly Logger Logger = LogManager.GetCurrentClassLogger();
+        private readonly Logger _logger = LogManager.GetCurrentClassLogger();
         public int CountWin { get; private set; } 
         public int CountDefeat { get; private set; } 
         public Player RightPlayer;
@@ -37,18 +37,18 @@ namespace GameService
         /// </summary>
         public void GetNormalPlayer()
         {
-            Logger.Debug("Attempt to create Right Player instance and set oponents for players");
+            _logger.Debug("Attempt to create Right Player instance and set oponents for players");
             RightPlayer = new MyBotPlayer(RightField);         
             LeftPlayer.Oponent = RightPlayer;          
             RightPlayer.Oponent = LeftPlayer;
-            Logger.Debug("Attempt to create Right Player instance and set oponents for players successfully completed" + RightPlayer.GetHashCode());
+            _logger.Debug("Attempt to create Right Player instance and set oponents for players successfully completed" + RightPlayer.GetHashCode());
         }
          /// <summary>
          /// Initialize easy mode player and sets oponents to players
          /// </summary>
         public void GetEasyPlayer()
         {
-            Logger.Debug("Attempt to get full path and load library CustomGamePlagin.dll");
+            _logger.Debug("Attempt to get full path and load library CustomGamePlagin.dll");
             var fullpath = AppDomain.CurrentDomain.BaseDirectory;
           
             var dllPath = string.Empty;
@@ -61,8 +61,8 @@ namespace GameService
                 dllPath = fullpath.Replace(@"SeaBattleMVVM\bin\Debug\", @"Plugins\CustomGamePlugin.dll");
             }
             var pluginAssembly = Assembly.LoadFrom(dllPath);
-            Logger.Debug("Attempt to get full path and load library CustomGamePlagin.dll successfully completed.Full path: "+fullpath);
-            Logger.Debug("Attempt to create Right Player instance and set oponents for players");
+            _logger.Debug("Attempt to get full path and load library CustomGamePlagin.dll successfully completed.Full path: "+fullpath);
+            _logger.Debug("Attempt to create Right Player instance and set oponents for players");
             foreach (var plugin in pluginAssembly.GetTypes())
             {
                 if (plugin.BaseType != null && (plugin.BaseType.ToString() != "GameCore.Player"  )) continue;
@@ -72,7 +72,7 @@ namespace GameService
            
             LeftPlayer.Oponent = RightPlayer;
             RightPlayer.Oponent = LeftPlayer;
-            Logger.Debug("Attempt to create Right Player instance and set oponents for players successfully completed" + RightPlayer.GetHashCode());
+            _logger.Debug("Attempt to create Right Player instance and set oponents for players successfully completed" + RightPlayer.GetHashCode());
         }
          /// <summary>
          /// Returns or sets end game flag
@@ -83,36 +83,36 @@ namespace GameService
          /// </summary>
         public void OnTransferMoveSubscribe()
         {
-            Logger.Debug("Attempt to subscribe to an event TransferMove for players");
+            _logger.Debug("Attempt to subscribe to an event TransferMove for players");
             RightPlayer.TransferMove += Transfer_Move;        
             LeftPlayer.TransferMove += Transfer_Move;
-            Logger.Debug("Attempt to subscribe to an event TransferMove for players successfully completed");
+            _logger.Debug("Attempt to subscribe to an event TransferMove for players successfully completed");
         }
         /// <summary>
         /// Subscribes players on made shot event and resets game statistics
         /// </summary>
         public void Init()
         {
-            Logger.Debug("Attempt to subscribe to an event MadeShot for players");
+            _logger.Debug("Attempt to subscribe to an event MadeShot for players");
             RightPlayer.OwnField.MadeShot += MadeShot;        
             LeftPlayer.OwnField. MadeShot += MadeShot;
-            Logger.Debug("Attempt to subscribe to an event MadeShot for players successfully completed");
-            Logger.Debug("Attempt to initialize right and  left statistics");
+            _logger.Debug("Attempt to subscribe to an event MadeShot for players successfully completed");
+            _logger.Debug("Attempt to initialize right and  left statistics");
             RightStatistics.CountLeftShot= Field.Size * Field.Size;
             RightStatistics.CountShips = Field.ShipsCount;           
             LeftStatistics.CountShips = Field.ShipsCount;
             LeftStatistics.CountLeftShot = Field.Size * Field.Size;
-            Logger.Debug("Attempt to initialize right and  left statistics successfully completed. Right statistic: "+RightStatistics.CountLeftShot+" "+RightStatistics.CountShips + "Left statistic: "+LeftStatistics.CountLeftShot+" "+LeftStatistics.CountShips);
+            _logger.Debug("Attempt to initialize right and  left statistics successfully completed. Right statistic: "+RightStatistics.CountLeftShot+" "+RightStatistics.CountShips + "Left statistic: "+LeftStatistics.CountLeftShot+" "+LeftStatistics.CountShips);
         }/// <summary>
         /// Reset definite statistics
         /// </summary>
         /// <param name="statistics"></param>
         public void ResetStatistics(Statistics statistics)
         {
-            Logger.Debug("Attempt to reset certain Statistics");
+            _logger.Debug("Attempt to reset certain Statistics");
             statistics.CountShips = Field.ShipsCount;
             statistics.CountLeftShot = Field.Size * Field.Size;
-            Logger.Debug("Attempt to reset certain Statistics successfully completed");
+            _logger.Debug("Attempt to reset certain Statistics successfully completed");
         }
          /// <summary>
          /// Transfer move to another player
@@ -121,11 +121,11 @@ namespace GameService
          /// <param name="e"></param>
         public void Transfer_Move(object sender, EventArgs e)
         {
-            Logger.Debug("Attempt to get current player and transfer move to another player");
+            _logger.Debug("Attempt to get current player and transfer move to another player");
             var player = (Player)sender;
            
             player.Oponent.Move();
-            Logger.Debug("Attempt to get current player and transfer move to another player successfully completed" + player);
+            _logger.Debug("Attempt to get current player and transfer move to another player successfully completed" + player);
         }
          /// <summary>
          /// Made shot and change statistics
@@ -134,7 +134,7 @@ namespace GameService
          /// <param name="e"></param>
         public void MadeShot(object sender, EventArgs e)
         {
-            Logger.Debug("Attempt to get current player update shot amount ");
+            _logger.Debug("Attempt to get current player update shot amount ");
             var field = (Field)sender;
          
             if (field == RightField)
@@ -150,11 +150,11 @@ namespace GameService
                 LeftStatistics.CountLeftShot--;
                 
             }
-            Logger.Debug("Attempt to update shot amount for current statistic successfully completed");
-            Logger.Debug("Attempt to get shot result");
+            _logger.Debug("Attempt to update shot amount for current statistic successfully completed");
+            _logger.Debug("Attempt to get shot result");
             var result = ((ShotEventArgs)e).ShotResult;
-            Logger.Debug("Attempt to get shot result successfully completed" + result);
-            Logger.Debug("Attempt to update ship amount for cuttenr statistic");
+            _logger.Debug("Attempt to get shot result successfully completed" + result);
+            _logger.Debug("Attempt to update ship amount for cuttenr statistic");
             if (result != CellStatus.Drowned) return;
             if (field == RightField)
             {
@@ -168,7 +168,7 @@ namespace GameService
                 LeftStatistics.CountShips--;
               
             }
-            Logger.Debug("Attempt to update ship amount for cuttenr statistic successfully completed");
+            _logger.Debug("Attempt to update ship amount for cuttenr statistic successfully completed");
 
         }
          /// <summary>
@@ -178,7 +178,7 @@ namespace GameService
          /// <param name="value"></param>
         public void EnabledSwitch(Cell[,] matrix, bool value)
         {
-            Logger.Debug("Attempt to change matrix value from "+value+" to "+!value);
+            _logger.Debug("Attempt to change matrix value from "+value+" to "+!value);
             for (var i = 0; i < Field.Size; i++)
             {
                 for (var j = 0; j < Field.Size; j++)
@@ -186,7 +186,7 @@ namespace GameService
                     matrix[i, j].Enabled = value;
                 }
             }
-            Logger.Debug("Attempt to change matrix value from " + value + " to " + !value + "successfully completed. Random matrix value is " +matrix[0,0].Enabled);
+            _logger.Debug("Attempt to change matrix value from " + value + " to " + !value + "successfully completed. Random matrix value is " +matrix[0,0].Enabled);
         }
         /// <summary>
         /// Unubscribes players from made shot event and sets game result
@@ -195,13 +195,13 @@ namespace GameService
         /// <param name="rStatistics"></param>
         public void GameOver(Statistics lStatistics, Statistics rStatistics)
         {
-            Logger.Debug("Attempt to unsubscribe to an event MadeShot for players");
+            _logger.Debug("Attempt to unsubscribe to an event MadeShot for players");
             RightPlayer.OwnField.MadeShot -= MadeShot;
           
             LeftPlayer.OwnField.MadeShot -= MadeShot;
-            Logger.Debug("Attempt to unsubscribe to an event MadeShot for players successfully completed");
+            _logger.Debug("Attempt to unsubscribe to an event MadeShot for players successfully completed");
 
-            Logger.Debug("Attempt to get game result");
+            _logger.Debug("Attempt to get game result");
             if (lStatistics.CountShips > rStatistics.CountShips && (lStatistics.CountShips==0|| rStatistics.CountShips==0))
             {
                 CountWin++;
@@ -212,19 +212,19 @@ namespace GameService
             {
                 CountDefeat++;
             }
-            Logger.Debug("Game result: win amount is "+CountWin+" defeat amount:" +CountDefeat);
+            _logger.Debug("Game result: win amount is "+CountWin+" defeat amount:" +CountDefeat);
 
         }
         public void RandomArrangement(Field field)
         {
-            Logger.Debug("Attemp to clear field from ships and generate new field");
+            _logger.Debug("Attemp to clear field from ships and generate new field");
             foreach (var value in field.RandomShips.ListShips)
                 value.Destruction();
           
             ((RandomFieldAlgorithm) field.RandomShips).ListShips.Clear();
           
             ((RandomFieldAlgorithm)field.RandomShips).NewArrangement(field);
-            Logger.Debug("Attemp to clear field from ships and generate new field successfully completed. Ship amount is " + field.RandomShips.ListShips.Count);
+            _logger.Debug("Attemp to clear field from ships and generate new field successfully completed. Ship amount is " + field.RandomShips.ListShips.Count);
         }
     }
     }

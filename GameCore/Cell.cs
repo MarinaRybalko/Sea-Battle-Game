@@ -6,6 +6,7 @@ namespace GameCore
     public class Cell:PictureBox
 
     {
+      
         /// <summary>
         /// Returns or sets cell location on field
         /// </summary>

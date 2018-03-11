@@ -14,7 +14,7 @@ namespace SeaBattleGame
     public partial class Form1 : Form
     {
         private static readonly Random Random = new Random(DateTime.Now.Millisecond);
-        
+        private const int RatingConst=100;
         private RatingForm _ratingForm;
         private readonly GameController _controller;       
         private readonly ViewCell _view = new ViewCell();
@@ -318,12 +318,12 @@ namespace SeaBattleGame
                     int rating;
                     if (defeat == 0)
                     {
-                        rating = win + 100;
+                        rating = win + RatingConst;
 
                     }
                     else
                     {
-                        rating = (win / defeat) + 100;
+                        rating = (win / defeat) + RatingConst;
 
                     }
                     q.WinAmount = win;
@@ -342,8 +342,8 @@ namespace SeaBattleGame
                     DefeatAmount = _controller.CountDefeat
                 };
                 if (_controller.CountDefeat != 0)
-                    player.Rating = _controller.CountWin / _controller.CountDefeat + 100;
-                else player.Rating = _controller.CountWin + 100;
+                    player.Rating = _controller.CountWin / _controller.CountDefeat + RatingConst;
+                else player.Rating = _controller.CountWin + RatingConst;
                 Players.Create(player);
                 Players.Save();
             }

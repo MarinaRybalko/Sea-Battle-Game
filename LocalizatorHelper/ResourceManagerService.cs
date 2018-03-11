@@ -1,7 +1,5 @@
-﻿using System;
+﻿
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Resources;
 using System.Globalization;
 using System.Threading;
@@ -10,7 +8,7 @@ namespace LocalizatorHelper
 {
     public static class ResourceManagerService
     {
-        private static Dictionary<string, ResourceManager> _managers;
+        private static readonly Dictionary<string, ResourceManager> Managers;
         /// <summary>
         /// Occurs when culture changed
         /// </summary>
@@ -20,10 +18,7 @@ namespace LocalizatorHelper
         {
             var evt = LocaleChanged;
 
-            if (evt != null)
-            {
-                evt.Invoke(null, new LocaleChangedEventArgs(newLocale));
-            }
+            evt?.Invoke(null, new LocaleChangedEventArgs(newLocale));
         }
 
         /// <summary>
@@ -35,7 +30,7 @@ namespace LocalizatorHelper
         /// </summary>
         static ResourceManagerService()
         {
-            _managers = new Dictionary<string, ResourceManager>();
+            Managers = new Dictionary<string, ResourceManager>();
 
             ChangeLocale(CultureInfo.CurrentCulture.Name);
         }
@@ -49,10 +44,10 @@ namespace LocalizatorHelper
         /// <returns></returns>
         public static string GetResourceString(string managerName, string resourceKey)
         {
-            ResourceManager manager = null;
-            string resource = String.Empty;
+            ResourceManager manager;
+            var resource = string.Empty;
 
-            if (_managers.TryGetValue(managerName, out manager))
+            if (Managers.TryGetValue(managerName, out manager))
             {
                 resource = manager.GetString(resourceKey);
             }
@@ -95,13 +90,13 @@ namespace LocalizatorHelper
         /// </summary>
         public static void RegisterManager(string managerName, ResourceManager manager, bool refresh)
         {
-            ResourceManager _manager = null;
+            ResourceManager resourceManager;
 
-            _managers.TryGetValue(managerName, out _manager);
+            Managers.TryGetValue(managerName, out resourceManager);
 
-            if (_manager == null)
+            if (resourceManager == null)
             {
-                _managers.Add(managerName, manager);
+                Managers.Add(managerName, manager);
             }
 
             if (refresh)
@@ -115,13 +110,13 @@ namespace LocalizatorHelper
         /// </summary>
         public static void UnregisterManager(string name)
         {
-            ResourceManager manager = null;
+            ResourceManager manager;
 
-            _managers.TryGetValue(name, out manager);
+            Managers.TryGetValue(name, out manager);
 
             if (manager != null)
             {
-                _managers.Remove(name);
+                Managers.Remove(name);
             }
         }
     }

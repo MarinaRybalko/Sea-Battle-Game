@@ -44,28 +44,23 @@ namespace LocalizatorHelper
                 {
                     throw new ArgumentException(@"Is the correct string format specified [ManagerName].[ResourceKey]");
                 }
-                if (DesignHelpers.IsInDesignMode)
-                {
-                    return "[res]";
-                }
-
-                return ResourceManagerService.GetResourceString(GetManagerKey(key), GetResourceKey(key));
+                return DesignHelpers.IsInDesignMode ? "[res]" : ResourceManagerService.GetResourceString(GetManagerKey(key), GetResourceKey(key));
             }
         }
 
         #region Private Key Methods
 
-        private bool ValidateKey(string input)
+        private static bool ValidateKey(string input)
         {
             return input.Contains(".");
         }
 
-        private string GetManagerKey(string input)
+        public string GetManagerKey(string input)
         {
             return input.Split('.')[0];
         }
 
-        private string GetResourceKey(string input)
+        private static string GetResourceKey(string input)
         {
             return input.Substring(input.IndexOf('.') + 1);
         }

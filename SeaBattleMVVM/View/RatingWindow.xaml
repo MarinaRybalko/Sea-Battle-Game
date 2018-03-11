@@ -10,10 +10,10 @@
         <localizatorHelper:LocalisationHelper x:Key="Helper"></localizatorHelper:LocalisationHelper>
     </Window.Resources>
     <Grid Background="LightSkyBlue">
-        <DataGrid x:Name="DataGrid" HorizontalAlignment="Left" Margin="24,44,0,10.4" Width="242" RenderTransformOrigin="0.495,0.423" AutoGenerateColumns="False" >
+        <DataGrid x:Name="DataGrid" HorizontalAlignment="Left" Margin="53,44,0,10.4" Width="188" RenderTransformOrigin="0.495,0.423" AutoGenerateColumns="False" >
         
         </DataGrid>
-        <Label x:Name="Label" Content="{Binding [MainWindowRes.TopPlayers_Btn], Source={StaticResource Helper} }" FontFamily="Monotype Corsiva" FontSize="30" HorizontalAlignment="Left" Margin="101,-1,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="Label" Content="{Binding [MainWindowRes.TopPlayers_Btn], Source={StaticResource Helper} }" FontFamily="Monotype Corsiva" FontSize="30" HorizontalAlignment="Left" Margin="53,1,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

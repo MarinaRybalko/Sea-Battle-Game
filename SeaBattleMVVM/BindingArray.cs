@@ -1,20 +1,21 @@
 ﻿
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Data;
+using GameCore;
 
 namespace SeaBattleMVVM
 {
     public class BindingArray : INotifyPropertyChanged
     {
         private readonly int[,] _data;
+        
         /// <summary>
         /// Initialize a new instance of the <see cref="BindingArray"/> class
         /// </summary>
         public BindingArray()
         {
-            _data = new int[10, 10];
+            _data = new int[Field.Size,Field.Size];
 
 
         }

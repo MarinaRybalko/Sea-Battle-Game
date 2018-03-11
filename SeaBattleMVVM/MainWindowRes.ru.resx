@@ -163,10 +163,10 @@
     <value>Морской бой</value>
   </data>
   <data name="ShipAmount_Lbl" xml:space="preserve">
-    <value>Кол-во кораблей: </value>
+    <value>Кол-во кораблей:</value>
   </data>
   <data name="ShotAmount_Lbl" xml:space="preserve">
-    <value>Кол-во выстрелов: </value>
+    <value>Кол-во выстрелов:</value>
   </data>
   <data name="Start_Btn" xml:space="preserve">
     <value>Старт</value>

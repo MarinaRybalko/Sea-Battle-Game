@@ -31,5 +31,6 @@ namespace GameCore
         /// Describes busy cell
         /// </summary>
         NotValidLocation
+
     }
 }

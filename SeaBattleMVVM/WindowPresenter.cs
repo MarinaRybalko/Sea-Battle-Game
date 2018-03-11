@@ -45,25 +45,30 @@ namespace SeaBattleMVVM
                 case 1:
                 {
                     window = new RatingWindow();
-
-                    {
+                   
+                        {                    
                         var panel = (Panel)window.Content;
                         foreach (var child in panel.Children)
                         {
-                            if (child is DataGrid)
-                            {
-
-                                (child as DataGrid).ItemsSource = (IEnumerable) pDataContext;
-                                Binding source = new Binding("MainWindowRes.Name_Lbl");
-                                //(child as DataGrid).Items[0]= new Binding("MainWindowRes.Rating_Lbl");
-                                    //(child as DataGrid).Columns[1].Header = new Binding("MainWindowRes.Rating_Lbl");
-
-
-
-                                }
+                            var textColumn = new DataGridTextColumn();
+                            var textColumn1 = new DataGridTextColumn();
+                            if (!(child is DataGrid)) continue;
+                            var childGrid = child as DataGrid;
+                            IEnumerable players = (IEnumerable)pDataContext;
+                                (child as DataGrid).ItemsSource = players;
+                            textColumn.Header =
+                                ResourceManagerService.GetResourceString("MainWindowRes", "Name_Lbl");
+                            textColumn.Binding= new Binding("Name");
+                               
+                            childGrid.Columns.Add(textColumn);
+                            textColumn1.Header =
+                                ResourceManagerService.GetResourceString("MainWindowRes", "Rating_Lbl");
+                            textColumn1.Binding = new Binding("Rating");
+                            childGrid.Columns.Add(textColumn1);
                         }
-
-                        window.ShowDialog();
+                           
+                           
+                            window.ShowDialog();
 
                     }
                     break;

@@ -48,7 +48,7 @@ namespace CustomGamePlugin
             {
                 if (_shotState == CellStatus.Drowned)
                     MarkDrownedShip();
-                Thread.Sleep(140);
+                Thread.Sleep(100);
 
                 if (!(_cordinateJ < Field.Size))
                 {

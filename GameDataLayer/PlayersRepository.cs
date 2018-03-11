@@ -12,13 +12,13 @@ namespace GameDataLayer
 {
     public class PlayersRepository : IRepository<BattlePlayer>
     {
-        private PlayersDBEntities db;
+        private readonly PlayersDBEntities _db;
         /// <summary>
         /// Initialize a new instance of <see cref="PlayersRepository" /> class
         /// </summary>
         public PlayersRepository()
         {
-            db = new PlayersDBEntities();
+            _db = new PlayersDBEntities();
         }
         /// <summary>
         /// Gets top ten players from database
@@ -27,7 +27,7 @@ namespace GameDataLayer
         public IEnumerable GetTopTen()
         {
           
-            var query = from p in db.BattlePlayer
+            var query = from p in _db.BattlePlayer
                 orderby p.Rating descending
                 select new { p.Name, p.Rating };
         
@@ -42,7 +42,7 @@ namespace GameDataLayer
         {
            
           
-            return db.BattlePlayer.Find(id);
+            return _db.BattlePlayer.Find(id);
         }
         /// <summary>
         /// Gets player from database by name
@@ -52,7 +52,7 @@ namespace GameDataLayer
         public BattlePlayer GetPlayer(string name)
         {
           
-            var query = from player in db.BattlePlayer
+            var query = from player in _db.BattlePlayer
                         where player.Name == name
                         select player;
             if(!query.Any())
@@ -87,7 +87,7 @@ namespace GameDataLayer
         public void Create(BattlePlayer player)
         {
             
-            db.BattlePlayer.Add(player);
+            _db.BattlePlayer.Add(player);
             
         }
         /// <summary>
@@ -98,7 +98,7 @@ namespace GameDataLayer
         public IQueryable<BattlePlayer> GetPlayers(string name)
         {
           
-            var query = from player in db.BattlePlayer
+            var query = from player in _db.BattlePlayer
                         where player.Name == name
                         select player;
             if (!query.Any())
@@ -119,7 +119,7 @@ namespace GameDataLayer
         public void Update(BattlePlayer player)
         {
            
-            db.Entry(player).State = EntityState.Modified;
+            _db.Entry(player).State = EntityState.Modified;
            
         }
         /// <summary>
@@ -129,11 +129,11 @@ namespace GameDataLayer
         public void Delete(int id)
         {
          
-            BattlePlayer player = db.BattlePlayer.Find(id);
+            BattlePlayer player = _db.BattlePlayer.Find(id);
             if (player != null)
             {
                 
-                db.BattlePlayer.Remove(player);
+                _db.BattlePlayer.Remove(player);
                
             }
             
@@ -144,7 +144,7 @@ namespace GameDataLayer
         public void Save()
         {
           
-            db.SaveChanges();
+            _db.SaveChanges();
        
         }
          
@@ -161,7 +161,7 @@ namespace GameDataLayer
             {
                 if (disposing)
                 {
-                    db.Dispose();
+                    _db.Dispose();
                 }
             }
             _disposed = true;
@@ -184,7 +184,7 @@ namespace GameDataLayer
         public IEnumerable<BattlePlayer> GetPlayersList()
         {
 
-            return db.BattlePlayer.ToList();
+            return _db.BattlePlayer.ToList();
         }
 
     }
