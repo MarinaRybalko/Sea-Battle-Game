@@ -1,0 +1,10 @@
+C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\GameDataLayer\bin\Debug\GameDataLayer.dll.config
+C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\GameDataLayer\bin\Debug\GameDataLayer.dll
+C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\GameDataLayer\bin\Debug\GameDataLayer.pdb
+C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\GameDataLayer\bin\Debug\EntityFramework.dll
+C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\GameDataLayer\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\GameDataLayer\bin\Debug\EntityFramework.xml
+C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\GameDataLayer\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\GameDataLayer\obj\Debug\GameDataLayer.dll
+C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\GameDataLayer\obj\Debug\GameDataLayer.pdb
+C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\GameDataLayer\obj\Debug\GameDataLayer.csprojResolveAssemblyReference.cache
