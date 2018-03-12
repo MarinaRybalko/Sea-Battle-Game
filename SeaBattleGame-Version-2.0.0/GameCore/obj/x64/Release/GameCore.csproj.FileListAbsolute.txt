@@ -1,4 +1,0 @@
-C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\GameCore\bin\x64\Release\GameCore.dll
-C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\GameCore\bin\x64\Release\GameCore.pdb
-C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\GameCore\obj\x64\Release\GameCore.dll
-C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\GameCore\obj\x64\Release\GameCore.pdb

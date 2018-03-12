@@ -1,7 +1,0 @@
-C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\CustomGamePlugin\bin\Debug\CustomGamePlugin.dll
-C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\CustomGamePlugin\bin\Debug\CustomGamePlugin.pdb
-C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\CustomGamePlugin\bin\Debug\GameCore.dll
-C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\CustomGamePlugin\bin\Debug\GameCore.pdb
-C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\CustomGamePlugin\obj\Debug\CustomGamePlugin.csprojResolveAssemblyReference.cache
-C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\CustomGamePlugin\obj\Debug\CustomGamePlugin.dll
-C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\CustomGamePlugin\obj\Debug\CustomGamePlugin.pdb
