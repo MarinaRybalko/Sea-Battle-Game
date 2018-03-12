@@ -1,0 +1,4 @@
+C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\LocalizatorHelper\bin\Debug\LocalizatorHelper.dll
+C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\LocalizatorHelper\bin\Debug\LocalizatorHelper.pdb
+C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\LocalizatorHelper\obj\Debug\LocalizatorHelper.dll
+C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\LocalizatorHelper\obj\Debug\LocalizatorHelper.pdb

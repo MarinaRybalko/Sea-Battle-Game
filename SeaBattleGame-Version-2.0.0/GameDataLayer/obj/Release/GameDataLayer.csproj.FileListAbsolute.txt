@@ -1,0 +1,9 @@
+C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\GameDataLayer\bin\Release\GameDataLayer.dll.config
+C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\GameDataLayer\bin\Release\GameDataLayer.dll
+C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\GameDataLayer\bin\Release\GameDataLayer.pdb
+C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\GameDataLayer\bin\Release\EntityFramework.dll
+C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\GameDataLayer\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\GameDataLayer\bin\Release\EntityFramework.xml
+C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\GameDataLayer\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\GameDataLayer\obj\Release\GameDataLayer.dll
+C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\GameDataLayer\obj\Release\GameDataLayer.pdb

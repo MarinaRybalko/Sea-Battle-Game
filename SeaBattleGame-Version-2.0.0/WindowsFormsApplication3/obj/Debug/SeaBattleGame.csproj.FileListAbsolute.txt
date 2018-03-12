@@ -1,0 +1,63 @@
+L:\работа\WindowsFormsApplication3\WindowsFormsApplication3\obj\Debug\SeaBattleGame.csprojResolveAssemblyReference.cache
+L:\работа\WindowsFormsApplication3\WindowsFormsApplication3\obj\Debug\SeaBattleGame.csproj.GenerateResource.Cache
+L:\работа\WindowsFormsApplication3\WindowsFormsApplication3\bin\Debug\SeaBattleGame.exe.config
+L:\работа\WindowsFormsApplication3\WindowsFormsApplication3\bin\Debug\SeaBattleGame.exe
+L:\работа\WindowsFormsApplication3\WindowsFormsApplication3\bin\Debug\SeaBattleGame.pdb
+L:\работа\WindowsFormsApplication3\WindowsFormsApplication3\obj\Debug\SeaBattleGame.Form1.resources
+L:\работа\WindowsFormsApplication3\WindowsFormsApplication3\obj\Debug\SeaBattleGame.Properties.Resources.resources
+L:\работа\WindowsFormsApplication3\WindowsFormsApplication3\obj\Debug\SeaBattleGame.exe
+L:\работа\WindowsFormsApplication3\WindowsFormsApplication3\obj\Debug\SeaBattleGame.pdb
+E:\WindowsFormsApplication3\WindowsFormsApplication3\bin\Debug\SeaBattleGame.exe.config
+E:\WindowsFormsApplication3\WindowsFormsApplication3\obj\Debug\SeaBattleGame.exe
+E:\WindowsFormsApplication3\WindowsFormsApplication3\obj\Debug\SeaBattleGame.pdb
+E:\WindowsFormsApplication3\WindowsFormsApplication3\bin\Debug\SeaBattleGame.exe
+E:\WindowsFormsApplication3\WindowsFormsApplication3\bin\Debug\SeaBattleGame.pdb
+E:\WindowsFormsApplication3\WindowsFormsApplication3\obj\Debug\SeaBattleGame.csprojResolveAssemblyReference.cache
+E:\WindowsFormsApplication3\WindowsFormsApplication3\obj\Debug\SeaBattleGame.Form1.resources
+E:\WindowsFormsApplication3\WindowsFormsApplication3\obj\Debug\SeaBattleGame.Properties.Resources.resources
+E:\WindowsFormsApplication3\WindowsFormsApplication3\obj\Debug\SeaBattleGame.csproj.GenerateResource.Cache
+D:\SeaBattle-master\WindowsFormsApplication3\bin\Debug\SeaBattleGame.exe.config
+D:\SeaBattle-master\WindowsFormsApplication3\obj\Debug\SeaBattleGame.exe
+D:\SeaBattle-master\WindowsFormsApplication3\obj\Debug\SeaBattleGame.pdb
+D:\SeaBattle-master\WindowsFormsApplication3\bin\Debug\SeaBattleGame.exe
+D:\SeaBattle-master\WindowsFormsApplication3\bin\Debug\SeaBattleGame.pdb
+D:\SeaBattle-master\WindowsFormsApplication3\obj\Debug\SeaBattleGame.csprojResolveAssemblyReference.cache
+D:\SeaBattle-master\WindowsFormsApplication3\obj\Debug\SeaBattleGame.Form1.resources
+D:\SeaBattle-master\WindowsFormsApplication3\obj\Debug\SeaBattleGame.Properties.Resources.resources
+D:\SeaBattle-master\WindowsFormsApplication3\obj\Debug\SeaBattleGame.csproj.GenerateResource.Cache
+D:\SeaBattle-master\WindowsFormsApplication3\bin\Debug\EntityFramework.dll
+D:\SeaBattle-master\WindowsFormsApplication3\bin\Debug\EntityFramework.SqlServer.dll
+D:\SeaBattle-master\WindowsFormsApplication3\bin\Debug\EntityFramework.xml
+D:\SeaBattle-master\WindowsFormsApplication3\bin\Debug\EntityFramework.SqlServer.xml
+D:\SeaBattle-master\WindowsFormsApplication3\obj\Debug\SeaBattleGame.RatingForm.resources
+D:\SeaBattle-master\WindowsFormsApplication3\bin\Debug\IStyle.dll
+D:\SeaBattle-master\WindowsFormsApplication3\obj\Debug\SeaBattleGame.GreetingForm.resources
+D:\SeaBattle-master\WindowsFormsApplication3\bin\Debug\Resources\PlayersDB.mdf
+D:\SeaBattle-master\WindowsFormsApplication3\bin\Debug\Resources\PlayersDB_log.ldf
+C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\WindowsFormsApplication3\bin\Debug\SeaBattleGame.exe.config
+C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\WindowsFormsApplication3\obj\Debug\SeaBattleGame.exe
+C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\WindowsFormsApplication3\obj\Debug\SeaBattleGame.pdb
+C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\WindowsFormsApplication3\obj\Debug\SeaBattleGame.csprojResolveAssemblyReference.cache
+C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\WindowsFormsApplication3\obj\Debug\SeaBattleGame.Form1.resources
+C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\WindowsFormsApplication3\obj\Debug\SeaBattleGame.GreetingForm.resources
+C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\WindowsFormsApplication3\obj\Debug\SeaBattleGame.Properties.Resources.resources
+C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\WindowsFormsApplication3\obj\Debug\SeaBattleGame.RatingForm.resources
+C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\WindowsFormsApplication3\obj\Debug\SeaBattleGame.csproj.GenerateResource.Cache
+C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\WindowsFormsApplication3\bin\Debug\Resources\PlayersDB_log.ldf
+C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\WindowsFormsApplication3\bin\Debug\Resources\PlayersDB.mdf
+C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\WindowsFormsApplication3\bin\Debug\SeaBattleGame.exe
+C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\WindowsFormsApplication3\bin\Debug\SeaBattleGame.pdb
+C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\WindowsFormsApplication3\bin\Debug\EntityFramework.dll
+C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\WindowsFormsApplication3\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\WindowsFormsApplication3\bin\Debug\GameCore.dll
+C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\WindowsFormsApplication3\bin\Debug\GameService.dll
+C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\WindowsFormsApplication3\bin\Debug\IStyle.dll
+C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\WindowsFormsApplication3\bin\Debug\GameCore.pdb
+C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\WindowsFormsApplication3\bin\Debug\GameService.pdb
+C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\WindowsFormsApplication3\bin\Debug\EntityFramework.xml
+C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\WindowsFormsApplication3\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\WindowsFormsApplication3\bin\Debug\GameDataLayer.dll
+C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\WindowsFormsApplication3\bin\Debug\GameDataLayer.pdb
+C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\WindowsFormsApplication3\bin\Debug\NLog.config
+C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\WindowsFormsApplication3\bin\Debug\NLog.dll
+C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\WindowsFormsApplication3\bin\Debug\NLog.xml

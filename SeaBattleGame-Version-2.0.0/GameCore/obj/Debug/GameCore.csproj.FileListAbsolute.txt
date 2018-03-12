@@ -1,0 +1,5 @@
+C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\GameCore\bin\Debug\GameCore.dll
+C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\GameCore\bin\Debug\GameCore.pdb
+C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\GameCore\obj\Debug\GameCore.dll
+C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\GameCore\obj\Debug\GameCore.pdb
+C:\Users\Marinka)))\Documents\Visual Studio 2015\Projects\winforms\GameCore\obj\Debug\GameCore.csprojResolveAssemblyReference.cache
